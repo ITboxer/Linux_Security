@@ -1,0 +1,37 @@
+======================================================================
+ 6.1. Hiden File in /dev 
+======================================================================
+Check> Hidden File check
+----------------------------------------------------------------------
+# find /dev -name ".*" -print
+----------------------------------------------------------------------
+
+======================================================================
+ 6.2. Hiden File in /tmp 
+======================================================================
+# find /tmp -name ".*" -print
+/tmp/.XIM-unix
+/tmp/.ICE-unix
+/tmp/.X11-unix
+/tmp/.Test-unix
+/tmp/.font-unix
+----------------------------------------------------------------------
+
+======================================================================
+ 6.3. Hiden File in /home 
+======================================================================
+# find /home -name ".*" -print
+/home/scoringbot/.bash_logout
+/home/scoringbot/.profile
+/home/scoringbot/.bashrc
+/home/scoringbot/scoringbot/.scoringbotid
+/home/scoringbot/.ssh
+/home/gt/.bash_logout
+/home/gt/.cache
+/home/gt/.ansible
+/home/gt/.profile
+/home/gt/.sudo_as_admin_successful
+/home/gt/.bashrc
+/home/gt/.ssh
+----------------------------------------------------------------------
+

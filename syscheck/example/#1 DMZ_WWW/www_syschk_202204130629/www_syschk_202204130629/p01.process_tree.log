@@ -1,0 +1,313 @@
+======================================================================
+ 1. Running Process Tree
+======================================================================
+# pstree -acpul
+systemd,1 splash
+  |-VGAuthService,448
+  |-accounts-daemon,523
+  |   |-{accounts-daemon},539
+  |   `-{accounts-daemon},544
+  |-acpid,524
+  |-agetty,562 -o -p -- \\u --noclear tty1 linux
+  |-containerd,560
+  |   |-{containerd},568
+  |   |-{containerd},570
+  |   |-{containerd},571
+  |   |-{containerd},572
+  |   |-{containerd},573
+  |   |-{containerd},577
+  |   |-{containerd},578
+  |   `-{containerd},579
+  |-containerd-shim,802 -namespace moby -id 55aff7006cdc6ce185aeb593d4d34bfbf354fda774ba3a56077f70484cd3a308 -address /run/containerd/containerd.sock
+  |   |-sh,853 -c /bin/bash ./entrypoint.sh
+  |   |   `-bash,964 ./entrypoint.sh
+  |   |       `-sqlservr,977
+  |   |           |-sqlservr,1017
+  |   |           |   |-{sqlservr},1019
+  |   |           |   |-{sqlservr},1020
+  |   |           |   |-{sqlservr},1021
+  |   |           |   |-{sqlservr},1025
+  |   |           |   |-{sqlservr},1026
+  |   |           |   |-{sqlservr},1027
+  |   |           |   |-{sqlservr},1028
+  |   |           |   |-{sqlservr},1029
+  |   |           |   |-{sqlservr},1030
+  |   |           |   |-{sqlservr},1031
+  |   |           |   |-{sqlservr},1032
+  |   |           |   |-{sqlservr},1033
+  |   |           |   |-{sqlservr},1035
+  |   |           |   |-{sqlservr},1037
+  |   |           |   |-{sqlservr},1038
+  |   |           |   |-{sqlservr},1039
+  |   |           |   |-{sqlservr},1040
+  |   |           |   |-{sqlservr},1041
+  |   |           |   |-{sqlservr},1042
+  |   |           |   |-{sqlservr},1044
+  |   |           |   |-{sqlservr},1045
+  |   |           |   |-{sqlservr},1047
+  |   |           |   |-{sqlservr},1048
+  |   |           |   |-{sqlservr},1049
+  |   |           |   |-{sqlservr},1050
+  |   |           |   |-{sqlservr},1051
+  |   |           |   |-{sqlservr},1052
+  |   |           |   |-{sqlservr},1053
+  |   |           |   |-{sqlservr},1058
+  |   |           |   |-{sqlservr},1059
+  |   |           |   |-{sqlservr},1063
+  |   |           |   |-{sqlservr},1064
+  |   |           |   |-{sqlservr},1065
+  |   |           |   |-{sqlservr},1069
+  |   |           |   |-{sqlservr},1073
+  |   |           |   |-{sqlservr},1075
+  |   |           |   |-{sqlservr},1077
+  |   |           |   |-{sqlservr},1078
+  |   |           |   |-{sqlservr},1080
+  |   |           |   |-{sqlservr},1081
+  |   |           |   |-{sqlservr},1083
+  |   |           |   |-{sqlservr},1084
+  |   |           |   |-{sqlservr},1089
+  |   |           |   |-{sqlservr},1093
+  |   |           |   |-{sqlservr},1096
+  |   |           |   |-{sqlservr},1097
+  |   |           |   |-{sqlservr},1098
+  |   |           |   |-{sqlservr},1108
+  |   |           |   |-{sqlservr},1109
+  |   |           |   |-{sqlservr},1110
+  |   |           |   |-{sqlservr},1111
+  |   |           |   |-{sqlservr},1116
+  |   |           |   |-{sqlservr},1117
+  |   |           |   |-{sqlservr},1118
+  |   |           |   |-{sqlservr},1119
+  |   |           |   |-{sqlservr},1120
+  |   |           |   |-{sqlservr},1121
+  |   |           |   |-{sqlservr},1122
+  |   |           |   |-{sqlservr},1123
+  |   |           |   |-{sqlservr},1124
+  |   |           |   |-{sqlservr},1125
+  |   |           |   |-{sqlservr},1126
+  |   |           |   |-{sqlservr},1127
+  |   |           |   |-{sqlservr},1128
+  |   |           |   |-{sqlservr},1129
+  |   |           |   |-{sqlservr},1131
+  |   |           |   |-{sqlservr},1132
+  |   |           |   |-{sqlservr},1133
+  |   |           |   |-{sqlservr},1134
+  |   |           |   |-{sqlservr},1135
+  |   |           |   |-{sqlservr},1136
+  |   |           |   |-{sqlservr},1137
+  |   |           |   |-{sqlservr},1138
+  |   |           |   |-{sqlservr},1139
+  |   |           |   |-{sqlservr},1140
+  |   |           |   |-{sqlservr},1141
+  |   |           |   |-{sqlservr},1142
+  |   |           |   |-{sqlservr},1144
+  |   |           |   |-{sqlservr},1146
+  |   |           |   |-{sqlservr},1147
+  |   |           |   |-{sqlservr},1148
+  |   |           |   |-{sqlservr},1149
+  |   |           |   |-{sqlservr},1150
+  |   |           |   |-{sqlservr},1151
+  |   |           |   |-{sqlservr},1152
+  |   |           |   |-{sqlservr},1153
+  |   |           |   |-{sqlservr},1155
+  |   |           |   |-{sqlservr},1156
+  |   |           |   |-{sqlservr},1158
+  |   |           |   |-{sqlservr},1160
+  |   |           |   |-{sqlservr},1167
+  |   |           |   |-{sqlservr},2646
+  |   |           |   |-{sqlservr},2648
+  |   |           |   |-{sqlservr},2651
+  |   |           |   |-{sqlservr},2653
+  |   |           |   |-{sqlservr},2658
+  |   |           |   |-{sqlservr},2660
+  |   |           |   |-{sqlservr},4162
+  |   |           |   |-{sqlservr},4474
+  |   |           |   |-{sqlservr},5987
+  |   |           |   |-{sqlservr},20506
+  |   |           |   |-{sqlservr},755459
+  |   |           |   |-{sqlservr},809268
+  |   |           |   |-{sqlservr},1024657
+  |   |           |   |-{sqlservr},1222108
+  |   |           |   |-{sqlservr},1240006
+  |   |           |   |-{sqlservr},1257785
+  |   |           |   |-{sqlservr},1364054
+  |   |           |   |-{sqlservr},1381748
+  |   |           |   |-{sqlservr},1399387
+  |   |           |   |-{sqlservr},1434800
+  |   |           |   |-{sqlservr},1452436
+  |   |           |   |-{sqlservr},1487915
+  |   |           |   |-{sqlservr},1505610
+  |   |           |   |-{sqlservr},1647434
+  |   |           |   |-{sqlservr},1682707
+  |   |           |   |-{sqlservr},1682708
+  |   |           |   |-{sqlservr},1700448
+  |   |           |   |-{sqlservr},1718097
+  |   |           |   |-{sqlservr},1753688
+  |   |           |   |-{sqlservr},1753689
+  |   |           |   |-{sqlservr},1771665
+  |   |           |   |-{sqlservr},1789398
+  |   |           |   |-{sqlservr},1806942
+  |   |           |   |-{sqlservr},1824718
+  |   |           |   |-{sqlservr},1824719
+  |   |           |   |-{sqlservr},1842524
+  |   |           |   |-{sqlservr},1860142
+  |   |           |   |-{sqlservr},1862480
+  |   |           |   |-{sqlservr},1877838
+  |   |           |   |-{sqlservr},1877839
+  |   |           |   |-{sqlservr},1895571
+  |   |           |   |-{sqlservr},1895572
+  |   |           |   |-{sqlservr},1913332
+  |   |           |   |-{sqlservr},1913333
+  |   |           |   |-{sqlservr},1918871
+  |   |           |   |-{sqlservr},1930870
+  |   |           |   |-{sqlservr},1930871
+  |   |           |   |-{sqlservr},1937969
+  |   |           |   `-{sqlservr},1948163
+  |   |           |-{sqlservr},1016
+  |   |           `-{sqlservr},1018
+  |   |-{containerd-shim},803
+  |   |-{containerd-shim},804
+  |   |-{containerd-shim},805
+  |   |-{containerd-shim},806
+  |   |-{containerd-shim},807
+  |   |-{containerd-shim},808
+  |   |-{containerd-shim},809
+  |   |-{containerd-shim},810
+  |   |-{containerd-shim},811
+  |   |-{containerd-shim},812
+  |   `-{containerd-shim},1202
+  |-containerd-shim,829 -namespace moby -id 8fd0c22ae7b298cde7405fc12642e746db0fb7c320d719f5cc3aa3f01f1f3271 -address /run/containerd/containerd.sock
+  |   |-sh,854 -c /bin/sh entrypoint.sh
+  |   |   |-cron,947
+  |   |   |   `-cron,1946903
+  |   |   |       `-sh,1946905 -c test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+  |   |   |           `-run-parts,1946907 --report /etc/cron.daily
+  |   |   |               `-apt-compat,1946909 /etc/cron.daily/apt-compat
+  |   |   |                   `-sleep,1946921 372
+  |   |   `-sh,942 entrypoint.sh
+  |   |       `-java,946 -Djava.security.egd=file:/dev/./urandom -Dspring.datasource.url=jdbc:sqlserver://www-beg-db;databaseName=portal -Dspring.datasource.username=admin -Dspring.datasource.password=Admin1Admin1 -Dportal.crx.team.name=BT11 -Dportal.crx.invoices.folder=/invoices/ -jar nrjselfservice.jar
+  |   |           |-{java},948
+  |   |           |-{java},949
+  |   |           |-{java},950
+  |   |           |-{java},951
+  |   |           |-{java},952
+  |   |           |-{java},953
+  |   |           |-{java},960
+  |   |           |-{java},961
+  |   |           |-{java},962
+  |   |           |-{java},963
+  |   |           |-{java},966
+  |   |           |-{java},967
+  |   |           |-{java},968
+  |   |           |-{java},969
+  |   |           |-{java},981
+  |   |           |-{java},982
+  |   |           |-{java},1011
+  |   |           |-{java},1060
+  |   |           |-{java},1061
+  |   |           |-{java},1062
+  |   |           |-{java},1165
+  |   |           |-{java},1174
+  |   |           |-{java},1175
+  |   |           |-{java},1176
+  |   |           |-{java},1177
+  |   |           |-{java},1178
+  |   |           |-{java},1179
+  |   |           |-{java},1180
+  |   |           |-{java},1181
+  |   |           |-{java},1182
+  |   |           |-{java},1183
+  |   |           |-{java},1184
+  |   |           |-{java},1185
+  |   |           `-{java},1186
+  |   |-{containerd-shim},830
+  |   |-{containerd-shim},831
+  |   |-{containerd-shim},832
+  |   |-{containerd-shim},833
+  |   |-{containerd-shim},834
+  |   |-{containerd-shim},835
+  |   |-{containerd-shim},836
+  |   |-{containerd-shim},837
+  |   |-{containerd-shim},838
+  |   `-{containerd-shim},839
+  |-cron,525 -f
+  |-dbus-daemon,526,messagebus --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  |-dockerd,585 -H fd:// --containerd=/run/containerd/containerd.sock
+  |   |-docker-proxy,785 -proto tcp -host-ip 0.0.0.0 -host-port 8080 -container-ip 172.18.0.3 -container-port 80
+  |   |   |-{docker-proxy},787
+  |   |   |-{docker-proxy},788
+  |   |   |-{docker-proxy},789
+  |   |   |-{docker-proxy},790
+  |   |   |-{docker-proxy},791
+  |   |   |-{docker-proxy},792
+  |   |   |-{docker-proxy},793
+  |   |   `-{docker-proxy},796765
+  |   |-{dockerd},587
+  |   |-{dockerd},588
+  |   |-{dockerd},593
+  |   |-{dockerd},594
+  |   |-{dockerd},595
+  |   |-{dockerd},596
+  |   |-{dockerd},599
+  |   |-{dockerd},786
+  |   |-{dockerd},794
+  |   |-{dockerd},820
+  |   |-{dockerd},821
+  |   |-{dockerd},880
+  |   |-{dockerd},933
+  |   `-{dockerd},934
+  |-irqbalance,531 --foreground
+  |   `-{irqbalance},550
+  |-networkd-dispat,533 /usr/bin/networkd-dispatcher --run-startup-triggers
+  |-nginx,565
+  |   |-nginx,566,www-data                           
+  |   `-nginx,567,www-data                           
+  |-rsyslogd,534,syslog -n -iNONE
+  |   |-{rsyslogd},540
+  |   |-{rsyslogd},541
+  |   `-{rsyslogd},542
+  |-scoringbot,586
+  |   |-{scoringbot},589
+  |   |-{scoringbot},590
+  |   |-{scoringbot},591
+  |   |-{scoringbot},592
+  |   |-{scoringbot},2344
+  |   |-{scoringbot},33677
+  |   `-{scoringbot},243235
+  |-sshd,563
+  |   |-sshd,1945909    
+  |   |   `-bash,1946295
+  |   |       |-syscheck_hash.s,1948168 ./syscheck_hash.sh
+  |   |       |   `-find,1948175 / -type f -exec timeout 1s md5sum {} +
+  |   |       |       `-(timeout,1948477)
+  |   |       `-syscheck_linux.,1948481 ./syscheck_linux.sh
+  |   |           `-pstree,1948602 -acpul
+  |   |-sshd,1946266    
+  |   |   `-sftp-server,1946293
+  |   `-sshd,1947786    
+  |       `-bash,1947820
+  |-systemd,1946231 --user
+  |   `-(sd-pam),1946237
+  |-systemd-journal,312
+  |-systemd-logind,535
+  |-systemd-network,347,systemd-network
+  |-systemd-resolve,419,systemd-resolve
+  |-systemd-timesyn,421,systemd-timesync
+  |   `-{systemd-timesyn},521
+  |-systemd-udevd,337
+  |   |-systemd-udevd,1948528
+  |   |-systemd-udevd,1948529
+  |   |-systemd-udevd,1948530
+  |   |-systemd-udevd,1948531
+  |   |-systemd-udevd,1948532
+  |   |-systemd-udevd,1948533
+  |   |-systemd-udevd,1948534
+  |   |-systemd-udevd,1948535
+  |   |-systemd-udevd,1948536
+  |   |-systemd-udevd,1948537
+  |   `-systemd-udevd,1948538
+  `-vmtoolsd,449
+      |-{vmtoolsd},463
+      `-{vmtoolsd},466
+----------------------------------------------------------------------
+

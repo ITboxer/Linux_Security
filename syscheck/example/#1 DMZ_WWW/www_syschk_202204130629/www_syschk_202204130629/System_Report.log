@@ -1,0 +1,1581 @@
+=====================================================
+  SYSTEM CHECK TIME
+-----------------------------------------------------
+ *  Start  - Wed 13 Apr 2022 06:29:15 AM UTC
+ *  Finish - Wed 13 Apr 2022 06:29:34 AM UTC
+=====================================================
+
+----------------------------------------------------------------------
+
+============================
+  SYSTEM CHECK LIST
+============================
+
+
+[ACCOUNT]
+a01. Unused Account
+a02. ROOT Owner (UID=0)
+a03. su Command
+a04. gshadow
+a05. System Account History
+a06. Failed Login Account 
+a07. Online Account
+a08. Bash Shell History
+
+[FILE_DIRECTORY]
+f01. passwd, shadow, group File Permissions
+f02. hosts, xinetd, rsyslog, service File Permissions
+f03. nouser File
+f04. Special File Permissions(SetUID, SetGID, Sticky Bit)
+f05. Abnormal File in /dev, /tmp
+f06. Hidden File in /dev, /tmp, /home
+
+[NETWORK SERVICE]
+n01. IP Address & Sniffer & ARP Spoopoing
+n02. Open Port
+n03. Router Table
+n04. Secure Terminal(SSH)
+n05.  System Banner
+
+[PROCESS]
+p01. Running Procoess Tree
+p02. Running Process List
+p03. Open File List
+p04. CPU State
+
+[FILE SYSTEM]
+s01. Uptime
+s02. Kernerl Version
+s03. Memory State
+s04. HDD, Partitions
+s05. umask
+s06. System Enviroment Value
+s07. Rootkit
+s08. Start Programs
+s09. System Timers
+s10. Crontab Schedule
+s11. System Command Permission
+
+----------------------------------------------------------------------
+
+
+
+########################## 
+#  Account                 
+########################## 
+
+======================================================================
+ 1. Unused Account
+======================================================================
+Check> Unused Account, Commented & Deleted The Line
+----------------------------------------------------------------------
+# cat /etc/passwd 
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+uuidd:x:106:112::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:107:113::/nonexistent:/usr/sbin/nologin
+sshd:x:108:65534::/run/sshd:/usr/sbin/nologin
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+gt:x:1000:1000::/home/gt:/bin/bash
+scoringbot:x:1001:1001::/home/scoringbot:/bin/bash
+----------------------------------------------------------------------
+
+
+======================================================================
+ 2. root owner check(uid value 0) 
+======================================================================
+Check> except for root, Account check(UID=0)
+----------------------------------------------------------------------
+# cat /etc/passwd | grep ":0:"
+root:x:0:0:root:/root:/bin/bash
+----------------------------------------------------------------------
+
+
+======================================================================
+ 3.1. su Command Restriction
+======================================================================
+Check> Command  Permissions '-rwsr-x---' - Normal
+----------------------------------------------------------------------
+# ls -al /bin/su 
+-rwsr-xr-x 1 root root 67816 Apr  2  2020 /bin/su
+----------------------------------------------------------------------
+
+======================================================================
+ 3.2. Wheel Group 
+======================================================================
+Check> wheel Group, su Command to add the account - Normal 
+----------------------------------------------------------------------
+# cat /etc/group | grep wheel 
+----------------------------------------------------------------------
+
+
+======================================================================
+ 4. gshadow 
+======================================================================
+Check> Unused account 
+----------------------------------------------------------------------
+# cat /etc/gshadow 
+root:*::
+daemon:*::
+bin:*::
+sys:*::
+adm:*::syslog
+tty:*::
+disk:*::
+lp:*::
+mail:*::
+news:*::
+uucp:*::
+man:*::
+proxy:*::
+kmem:*::
+dialout:*::
+fax:*::
+voice:*::
+cdrom:*::
+floppy:*::
+tape:*::
+sudo:*::gt,root,scoringbot
+audio:*::
+dip:*::
+www-data:*::
+backup:*::
+operator:*::
+list:*::
+irc:*::
+src:*::
+gnats:*::
+shadow:*::
+utmp:*::
+video:*::
+sasl:*::
+plugdev:*::
+staff:*::
+games:*::
+users:*::
+nogroup:*::
+systemd-journal:!::
+systemd-network:!::
+systemd-resolve:!::
+systemd-timesync:!::
+crontab:!::
+messagebus:!::
+input:!::
+kvm:!::
+render:!::
+syslog:!::
+lxd:!::
+uuidd:!::
+tcpdump:!::
+ssh:!::
+systemd-coredump:!!::
+gt:!::
+scoringbot:!::
+docker:!::
+----------------------------------------------------------------------
+
+
+======================================================================
+ 5.1. Last Account - last
+======================================================================
+Check> Do not use Account history. 
+----------------------------------------------------------------------
+# last
+root     pts/0        10.11.60.52      Wed Apr 13 06:23   still logged in
+reboot   system boot  5.4.0-26-generic Fri Apr  8 17:28   still running
+gt       pts/0        10.85.5.139      Fri Apr  8 17:24 - 17:24  (00:00)
+gt       pts/0        10.85.5.139      Fri Apr  8 17:24 - 17:24  (00:00)
+reboot   system boot  5.4.0-26-generic Fri Apr  8 17:23 - 17:27  (00:03)
+gt       pts/0        10.85.5.139      Fri Apr  8 17:23 - 17:23  (00:00)
+gt       pts/0        10.85.5.139      Fri Apr  8 17:23 - 17:23  (00:00)
+
+wtmp begins Fri Apr  8 17:23:40 2022
+----------------------------------------------------------------------
+
+======================================================================
+ 5.2. Last Account - lastlog
+======================================================================
+Check> Do not use Account history. 
+----------------------------------------------------------------------
+# lastlog
+Username         Port     From             Latest
+root             pts/0    10.11.60.52      Wed Apr 13 06:23:00 +0000 2022
+daemon                                     **Never logged in**
+bin                                        **Never logged in**
+sys                                        **Never logged in**
+sync                                       **Never logged in**
+games                                      **Never logged in**
+man                                        **Never logged in**
+lp                                         **Never logged in**
+mail                                       **Never logged in**
+news                                       **Never logged in**
+uucp                                       **Never logged in**
+proxy                                      **Never logged in**
+www-data                                   **Never logged in**
+backup                                     **Never logged in**
+list                                       **Never logged in**
+irc                                        **Never logged in**
+gnats                                      **Never logged in**
+nobody                                     **Never logged in**
+systemd-network                            **Never logged in**
+systemd-resolve                            **Never logged in**
+systemd-timesync                           **Never logged in**
+messagebus                                 **Never logged in**
+syslog                                     **Never logged in**
+_apt                                       **Never logged in**
+uuidd                                      **Never logged in**
+tcpdump                                    **Never logged in**
+sshd                                       **Never logged in**
+systemd-coredump                           **Never logged in**
+gt               pts/0    10.85.5.139      Fri Apr  8 17:24:17 +0000 2022
+scoringbot                                 **Never logged in**
+root             pts/0    10.11.60.52      Wed Apr 13 06:23:00 +0000 2022
+nobody                                     **Never logged in**
+----------------------------------------------------------------------
+
+
+======================================================================
+ 6. Failed Login Account 
+======================================================================
+Check> Failed Login Account 
+----------------------------------------------------------------------
+# lastb 
+root     ssh:notty    10.11.60.52      Wed Apr 13 06:22 - 06:22  (00:00)
+root     ssh:notty    10.11.60.52      Wed Apr 13 06:21 - 06:21  (00:00)
+
+btmp begins Wed Apr 13 06:21:47 2022
+----------------------------------------------------------------------
+
+
+======================================================================
+ 7. Online Account 
+======================================================================
+Check> Unknown Online-Account 
+----------------------------------------------------------------------
+# w 
+ 06:29:15 up 4 days, 13:01,  1 user,  load average: 0.26, 0.09, 0.02
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+root     pts/0    10.11.60.52      06:23    3.00s  0.18s  0.00s w
+----------------------------------------------------------------------
+
+
+======================================================================
+ 8.1. root Bash Shell History 
+======================================================================
+Check> Abnormal Command 
+----------------------------------------------------------------------
+# cat /root/.bash_history 
+File Not Found
+----------------------------------------------------------------------
+
+======================================================================
+ 8.2. gt User Bash Shell History 
+======================================================================
+Check> Abnormal Command 
+----------------------------------------------------------------------
+# cat /home/gt/.bash_history
+ File Not Found
+----------------------------------------------------------------------
+======================================================================
+ 8.2. scoringbot User Bash Shell History 
+======================================================================
+Check> Abnormal Command 
+----------------------------------------------------------------------
+# cat /home/scoringbot/.bash_history
+ File Not Found
+----------------------------------------------------------------------
+
+
+
+########################## 
+#  FILE & DIRECTORY        
+########################## 
+
+======================================================================
+ 1.1. passwd File
+======================================================================
+Check> File Permissions '-rw-r--r--' - Normal
+----------------------------------------------------------------------
+# ls -al /etc/passwd 
+-rw-r--r-- 1 root root 1577 Apr  8 17:19 /etc/passwd
+----------------------------------------------------------------------
+
+======================================================================
+ 1.2. shadow File
+======================================================================
+Check> File Permissions '-r--------', '----------' - Normal
+----------------------------------------------------------------------
+# ls -al /etc/shadow 
+-rw-r----- 1 root shadow 1158 Apr  8 17:19 /etc/shadow
+----------------------------------------------------------------------
+
+======================================================================
+ 1.3 group File
+======================================================================
+Check> File Permissions '-rw-r--r--', '-r--------' - Normal
+----------------------------------------------------------------------
+# ls -al /etc/group
+-rw-r--r-- 1 root root 766 Apr  8 17:19 /etc/group
+----------------------------------------------------------------------
+
+
+======================================================================
+ 2.1. hosts File
+======================================================================
+Check> File Permissions '-rw-r--r--' - Normal
+----------------------------------------------------------------------
+# ls -al /etc/hosts
+-rw-r--r-- 1 root root 206 Apr  8 17:19 /etc/hosts
+----------------------------------------------------------------------
+
+======================================================================
+ 2.2. xinetd File
+======================================================================
+Check> File Permissions '-r--------' - Normal
+----------------------------------------------------------------------
+# ls -al /etc/xinetd.conf
+File Not Found
+----------------------------------------------------------------------
+
+======================================================================
+ 2.3 rsyslog.conf File
+======================================================================
+Check> File Permissions '-rw-r--r--' - Normal
+----------------------------------------------------------------------
+# ls -al /etc/rsyslog.conf
+-rw-r--r-- 1 root root 1382 Feb 11  2020 /etc/rsyslog.conf
+----------------------------------------------------------------------
+
+======================================================================
+ 2.4 services File
+======================================================================
+Check> File Permissions '-rw-r--r--' - Normal
+----------------------------------------------------------------------
+# ls -al /etc/services
+-rw-r--r-- 1 root root 14464 Feb 16  2020 /etc/services
+----------------------------------------------------------------------
+
+
+======================================================================
+ 3. No Owner File
+======================================================================
+Check> No Owner File check
+----------------------------------------------------------------------
+# find / -nouser -o -nogroup -print 2>/dev/null
+----------------------------------------------------------------------
+
+
+======================================================================
+ 4.1. SetUID set File
+======================================================================
+Check> Check
+----------------------------------------------------------------------
+# find / -user root -perm -4000 -print -xdev
+/var/lib/docker/overlay2/165e3181b5522f2f50f28ddc34a39b0edfe5f0020b22a0db53a7b1bcd3e5bae5/diff/usr/sbin/exim4
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/usr/bin/chfn
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/usr/bin/newgrp
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/usr/bin/passwd
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/usr/bin/gpasswd
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/usr/bin/chsh
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/bin/su
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/bin/mount
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/bin/umount
+/var/lib/docker/overlay2/2141bc32d4a9c29ea0f39668ef94ae22c7d89c722d41da99849d61e9559766fb/diff/usr/lib/openssh/ssh-keysign
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/chfn
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/su
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/newgrp
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/mount
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/passwd
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/umount
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/gpasswd
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/chsh
+/usr/bin/chfn
+/usr/bin/su
+/usr/bin/fusermount
+/usr/bin/newgrp
+/usr/bin/mount
+/usr/bin/passwd
+/usr/bin/umount
+/usr/bin/sudo
+/usr/bin/gpasswd
+/usr/bin/chsh
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/openssh/ssh-keysign
+----------------------------------------------------------------------
+
+======================================================================
+ 4.2. SetGID set File
+======================================================================
+# find / -perm -2000 -print -xdev
+/var/mail
+/var/log/journal
+/var/log/journal/e70944171421476282ae3f2981cd3bc7
+/var/log/journal/a7b947b16c534f038c7e821ea0164e8e
+/var/lib/docker/overlay2/9e052722e57b1e2170620b83b9fea2ecadac38017001cfdc3f22844b106dc079/diff/var/mail
+/var/lib/docker/overlay2/9e052722e57b1e2170620b83b9fea2ecadac38017001cfdc3f22844b106dc079/diff/var/log/exim4
+/var/lib/docker/overlay2/165e3181b5522f2f50f28ddc34a39b0edfe5f0020b22a0db53a7b1bcd3e5bae5/diff/var/log/exim4
+/var/lib/docker/overlay2/165e3181b5522f2f50f28ddc34a39b0edfe5f0020b22a0db53a7b1bcd3e5bae5/diff/usr/bin/crontab
+/var/lib/docker/overlay2/165e3181b5522f2f50f28ddc34a39b0edfe5f0020b22a0db53a7b1bcd3e5bae5/diff/usr/bin/dotlock.mailutils
+/var/lib/docker/overlay2/54d6bbd1eb563dffedd97b0805741bb1853ef946064641e04f39c5577182a96e/diff/usr/local/lib/python3.8
+/var/lib/docker/overlay2/54d6bbd1eb563dffedd97b0805741bb1853ef946064641e04f39c5577182a96e/diff/usr/local/lib/python3.8/dist-packages
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/sbin/unix_chkpwd
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/var/mail
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/var/local
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/usr/bin/wall
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/usr/bin/expiry
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/usr/bin/chage
+/var/lib/docker/overlay2/a7d4d77553a56d3261b060b3b027eb03e539beb1063d57a21be5bbad61c470e3/diff/usr/local/share/fonts
+/var/lib/docker/overlay2/2141bc32d4a9c29ea0f39668ef94ae22c7d89c722d41da99849d61e9559766fb/diff/usr/bin/ssh-agent
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/var/mail
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/var/local
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/sbin/unix_chkpwd
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/sbin/pam_extrausers_chkpwd
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/wall
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/expiry
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/usr/bin/chage
+/var/local
+/usr/sbin/unix_chkpwd
+/usr/sbin/pam_extrausers_chkpwd
+/usr/bin/wall
+/usr/bin/expiry
+/usr/bin/ssh-agent
+/usr/bin/crontab
+/usr/bin/chage
+/usr/bin/bsd-write
+/usr/lib/mc/cons.saver
+/usr/lib/x86_64-linux-gnu/utempter/utempter
+/usr/local/lib/python3.8
+/usr/local/lib/python3.8/dist-packages
+/usr/local/lib/python3.8/dist-packages/dotenv
+/usr/local/lib/python3.8/dist-packages/dotenv/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker
+/usr/local/lib/python3.8/dist-packages/docker/context
+/usr/local/lib/python3.8/dist-packages/docker/context/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker/transport
+/usr/local/lib/python3.8/dist-packages/docker/transport/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker/credentials
+/usr/local/lib/python3.8/dist-packages/docker/credentials/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker/api
+/usr/local/lib/python3.8/dist-packages/docker/api/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker/utils
+/usr/local/lib/python3.8/dist-packages/docker/utils/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker/models
+/usr/local/lib/python3.8/dist-packages/docker/models/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker/types
+/usr/local/lib/python3.8/dist-packages/docker/types/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker/__pycache__
+/usr/local/lib/python3.8/dist-packages/jsonschema
+/usr/local/lib/python3.8/dist-packages/jsonschema/benchmarks
+/usr/local/lib/python3.8/dist-packages/jsonschema/benchmarks/__pycache__
+/usr/local/lib/python3.8/dist-packages/jsonschema/schemas
+/usr/local/lib/python3.8/dist-packages/jsonschema/tests
+/usr/local/lib/python3.8/dist-packages/jsonschema/tests/__pycache__
+/usr/local/lib/python3.8/dist-packages/jsonschema/__pycache__
+/usr/local/lib/python3.8/dist-packages/compose
+/usr/local/lib/python3.8/dist-packages/compose/config
+/usr/local/lib/python3.8/dist-packages/compose/config/__pycache__
+/usr/local/lib/python3.8/dist-packages/compose/cli
+/usr/local/lib/python3.8/dist-packages/compose/cli/__pycache__
+/usr/local/lib/python3.8/dist-packages/compose/metrics
+/usr/local/lib/python3.8/dist-packages/compose/metrics/__pycache__
+/usr/local/lib/python3.8/dist-packages/compose/__pycache__
+/usr/local/lib/python3.8/dist-packages/jsonschema-3.2.0.dist-info
+/usr/local/lib/python3.8/dist-packages/distro
+/usr/local/lib/python3.8/dist-packages/distro/__pycache__
+/usr/local/lib/python3.8/dist-packages/pyrsistent-0.18.1.dist-info
+/usr/local/lib/python3.8/dist-packages/attrs
+/usr/local/lib/python3.8/dist-packages/attrs/__pycache__
+/usr/local/lib/python3.8/dist-packages/python_dotenv-0.20.0.dist-info
+/usr/local/lib/python3.8/dist-packages/distro-1.7.0.dist-info
+/usr/local/lib/python3.8/dist-packages/websocket
+/usr/local/lib/python3.8/dist-packages/websocket/tests
+/usr/local/lib/python3.8/dist-packages/websocket/tests/data
+/usr/local/lib/python3.8/dist-packages/websocket/tests/__pycache__
+/usr/local/lib/python3.8/dist-packages/websocket/__pycache__
+/usr/local/lib/python3.8/dist-packages/dockerpty-0.4.1.dist-info
+/usr/local/lib/python3.8/dist-packages/attr
+/usr/local/lib/python3.8/dist-packages/attr/__pycache__
+/usr/local/lib/python3.8/dist-packages/attrs-21.4.0.dist-info
+/usr/local/lib/python3.8/dist-packages/websocket_client-1.3.2.dist-info
+/usr/local/lib/python3.8/dist-packages/texttable-1.6.4.dist-info
+/usr/local/lib/python3.8/dist-packages/dockerpty
+/usr/local/lib/python3.8/dist-packages/dockerpty/__pycache__
+/usr/local/lib/python3.8/dist-packages/docopt-0.6.2.dist-info
+/usr/local/lib/python3.8/dist-packages/docker_compose-1.29.2.dist-info
+/usr/local/lib/python3.8/dist-packages/__pycache__
+/usr/local/lib/python3.8/dist-packages/pyrsistent
+/usr/local/lib/python3.8/dist-packages/pyrsistent/__pycache__
+/usr/local/lib/python3.8/dist-packages/docker-5.0.3.dist-info
+/usr/local/share/fonts
+----------------------------------------------------------------------
+
+======================================================================
+ 4.3 Sticky Bit set File
+======================================================================
+# find / -perm -1000 -print -xdev
+/var/tmp
+/var/tmp/systemd-private-ac504c733aa9484395ccf6697a6345e7-systemd-resolved.service-4uRT8f/tmp
+/var/tmp/systemd-private-ac504c733aa9484395ccf6697a6345e7-systemd-logind.service-2m5ycf/tmp
+/var/tmp/systemd-private-ac504c733aa9484395ccf6697a6345e7-systemd-timesyncd.service-dpSNff/tmp
+/var/spool/cron/crontabs
+/var/lib/docker/overlay2/9e052722e57b1e2170620b83b9fea2ecadac38017001cfdc3f22844b106dc079/diff/tmp
+/var/lib/docker/overlay2/165e3181b5522f2f50f28ddc34a39b0edfe5f0020b22a0db53a7b1bcd3e5bae5/diff/var/spool/cron/crontabs
+/var/lib/docker/overlay2/165e3181b5522f2f50f28ddc34a39b0edfe5f0020b22a0db53a7b1bcd3e5bae5/diff/tmp
+/var/lib/docker/overlay2/54d6bbd1eb563dffedd97b0805741bb1853ef946064641e04f39c5577182a96e/diff/tmp
+/var/lib/docker/overlay2/dc11bc7d81eb083e298df0b31109f344ff5e727b158c4ba2e6190e684c01c505/diff/tmp
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/var/tmp
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/tmp
+/var/lib/docker/overlay2/fd0be1c523afdda3027bdb78357ddec6fc5c23c092ef144f75552abbe31980dd/diff/run/lock
+/var/lib/docker/overlay2/06f5ad49e2c827e28f0650bd7861ec8f151e97c0259753d5f3acef968ef06091/diff/tmp
+/var/lib/docker/overlay2/5edfe018d7bf96ee23e53db9136ab9f937566d581ea4a1538f1eb6013a1b36e9/diff/tmp
+/var/lib/docker/overlay2/a7d4d77553a56d3261b060b3b027eb03e539beb1063d57a21be5bbad61c470e3/diff/tmp
+/var/lib/docker/overlay2/483a0e07d368fde17086c7ded3cae4b823683f13f89f8b41efe2008e22f338d8/diff/tmp
+/var/lib/docker/overlay2/2141bc32d4a9c29ea0f39668ef94ae22c7d89c722d41da99849d61e9559766fb/diff/tmp
+/var/lib/docker/overlay2/63e68b28235a355a1900eeedc9dfec4cd739770672a528e564d533fa83c8da15/diff/tmp
+/var/lib/docker/overlay2/069a71aeaa56bd816c9b860b66ad91d3591f23211c9116781627e4b754a02cd9/diff/tmp
+/var/lib/docker/overlay2/3c3b3f0e2d1f2bea284e934f34b092639366deac39ac7c3426a8847bcbf1af62/diff/tmp
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/var/tmp
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/tmp
+/var/lib/docker/overlay2/ffaecca6e11d579c881fb17daf683d3276f79682d8e73d27a2135eecdfb08033/diff/run/lock
+/var/lib/docker/overlay2/50c0a7e5433acfd81265b5e44be7617ff1f8975cc67459aeb7ad6e17f31a6c49/diff/tmp
+/var/lib/docker/overlay2/ddafdac27c48e2785b42f98f7c390190f2574573bbf86a95537200073fd91a55/diff/var/spool/cron/crontabs
+/var/lib/docker/overlay2/b70aebf3c5fe823fa281f42eefcb48865bf12066e7743f5eee8e66ba0127d82b/diff/tmp
+/tmp
+/tmp/systemd-private-ac504c733aa9484395ccf6697a6345e7-systemd-logind.service-MIjjhi/tmp
+/tmp/.XIM-unix
+/tmp/.ICE-unix
+/tmp/.X11-unix
+/tmp/.Test-unix
+/tmp/systemd-private-ac504c733aa9484395ccf6697a6345e7-systemd-resolved.service-nymZIi/tmp
+/tmp/systemd-private-ac504c733aa9484395ccf6697a6345e7-systemd-timesyncd.service-1jcbNg/tmp
+/tmp/.font-unix
+----------------------------------------------------------------------
+
+
+======================================================================
+ 5.1. /dev File Check 
+======================================================================
+Check> abnormal File in /dev 
+----------------------------------------------------------------------
+# find /dev -type f -print | grep -v "MAKEDEV"
+----------------------------------------------------------------------
+
+======================================================================
+ 5.2. /tmp File Check 
+======================================================================
+# find /tmp -type f -print 
+----------------------------------------------------------------------
+
+
+======================================================================
+ 6.1. Hiden File in /dev 
+======================================================================
+Check> Hidden File check
+----------------------------------------------------------------------
+# find /dev -name ".*" -print
+----------------------------------------------------------------------
+
+======================================================================
+ 6.2. Hiden File in /tmp 
+======================================================================
+# find /tmp -name ".*" -print
+/tmp/.XIM-unix
+/tmp/.ICE-unix
+/tmp/.X11-unix
+/tmp/.Test-unix
+/tmp/.font-unix
+----------------------------------------------------------------------
+
+======================================================================
+ 6.3. Hiden File in /home 
+======================================================================
+# find /home -name ".*" -print
+/home/scoringbot/.bash_logout
+/home/scoringbot/.profile
+/home/scoringbot/.bashrc
+/home/scoringbot/scoringbot/.scoringbotid
+/home/scoringbot/.ssh
+/home/gt/.bash_logout
+/home/gt/.cache
+/home/gt/.ansible
+/home/gt/.profile
+/home/gt/.sudo_as_admin_successful
+/home/gt/.bashrc
+/home/gt/.ssh
+----------------------------------------------------------------------
+
+
+
+########################## 
+#  NETWORD SERVICE         
+########################## 
+
+======================================================================
+ 1.1. IP Address 
+======================================================================
+# ifconfig
+Fine Not Found
+----------------------------------------------------------------------
+
+======================================================================
+ 1.2. Sniffing 
+======================================================================
+Check> Promiscous Mode 
+----------------------------------------------------------------------
+# ifconfig | grep "PROMIS" 
+No Sniffer Mode 
+----------------------------------------------------------------------
+
+======================================================================
+ 1.3. ARP 
+======================================================================
+Check> Duplicate of (IP, MAC) address in MAC-IP binding - Spooping 
+----------------------------------------------------------------------
+# arp -a 
+ Not Found
+--------------------------------------------------------------------
+
+
+======================================================================
+ 2. Open Port  
+======================================================================
+Check> Abnormal Port
+----------------------------------------------------------------------
+# netstat -anp
+ netstat Command Not Found
+----------------------------------------------------------------------
+
+
+======================================================================
+ 3. Router Table
+======================================================================
+Check> Abnormal Port
+----------------------------------------------------------------------
+# netstat -rn
+ netstat Command Not Found
+----------------------------------------------------------------------
+
+
+======================================================================
+ 4. Secure Terminal (SSH) 
+======================================================================
+Check> SSH Check
+----------------------------------------------------------------------
+# netstat -anp | grep LISTEN | egrep ":(22|23)"
+ Terminal Not Found
+----------------------------------------------------------------------
+
+
+======================================================================
+ 5.1. System Banner - issue 
+======================================================================
+Check> Modified System Banner Information
+----------------------------------------------------------------------
+# cat /etc/issue 
+Ubuntu 20.04 LTS \n \l
+
+----------------------------------------------------------------------
+
+======================================================================
+ 5.2. System Banner - issue.net 
+======================================================================
+Check> Modified System Banner Information
+----------------------------------------------------------------------
+# cat /etc/issue.net 
+Ubuntu 20.04 LTS
+----------------------------------------------------------------------
+
+======================================================================
+ 5.3. System Banner - motd 
+======================================================================
+Check> Modified System Banner Information
+----------------------------------------------------------------------
+# cat /etc/motd 
+ /etc/motd File Not Found.
+----------------------------------------------------------------------
+
+
+
+########################## 
+#  PROCESS                 
+########################## 
+
+======================================================================
+ 1. Running Process Tree
+======================================================================
+# pstree -acpul
+systemd,1 splash
+  |-VGAuthService,448
+  |-accounts-daemon,523
+  |   |-{accounts-daemon},539
+  |   `-{accounts-daemon},544
+  |-acpid,524
+  |-agetty,562 -o -p -- \\u --noclear tty1 linux
+  |-containerd,560
+  |   |-{containerd},568
+  |   |-{containerd},570
+  |   |-{containerd},571
+  |   |-{containerd},572
+  |   |-{containerd},573
+  |   |-{containerd},577
+  |   |-{containerd},578
+  |   `-{containerd},579
+  |-containerd-shim,802 -namespace moby -id 55aff7006cdc6ce185aeb593d4d34bfbf354fda774ba3a56077f70484cd3a308 -address /run/containerd/containerd.sock
+  |   |-sh,853 -c /bin/bash ./entrypoint.sh
+  |   |   `-bash,964 ./entrypoint.sh
+  |   |       `-sqlservr,977
+  |   |           |-sqlservr,1017
+  |   |           |   |-{sqlservr},1019
+  |   |           |   |-{sqlservr},1020
+  |   |           |   |-{sqlservr},1021
+  |   |           |   |-{sqlservr},1025
+  |   |           |   |-{sqlservr},1026
+  |   |           |   |-{sqlservr},1027
+  |   |           |   |-{sqlservr},1028
+  |   |           |   |-{sqlservr},1029
+  |   |           |   |-{sqlservr},1030
+  |   |           |   |-{sqlservr},1031
+  |   |           |   |-{sqlservr},1032
+  |   |           |   |-{sqlservr},1033
+  |   |           |   |-{sqlservr},1035
+  |   |           |   |-{sqlservr},1037
+  |   |           |   |-{sqlservr},1038
+  |   |           |   |-{sqlservr},1039
+  |   |           |   |-{sqlservr},1040
+  |   |           |   |-{sqlservr},1041
+  |   |           |   |-{sqlservr},1042
+  |   |           |   |-{sqlservr},1044
+  |   |           |   |-{sqlservr},1045
+  |   |           |   |-{sqlservr},1047
+  |   |           |   |-{sqlservr},1048
+  |   |           |   |-{sqlservr},1049
+  |   |           |   |-{sqlservr},1050
+  |   |           |   |-{sqlservr},1051
+  |   |           |   |-{sqlservr},1052
+  |   |           |   |-{sqlservr},1053
+  |   |           |   |-{sqlservr},1058
+  |   |           |   |-{sqlservr},1059
+  |   |           |   |-{sqlservr},1063
+  |   |           |   |-{sqlservr},1064
+  |   |           |   |-{sqlservr},1065
+  |   |           |   |-{sqlservr},1069
+  |   |           |   |-{sqlservr},1073
+  |   |           |   |-{sqlservr},1075
+  |   |           |   |-{sqlservr},1077
+  |   |           |   |-{sqlservr},1078
+  |   |           |   |-{sqlservr},1080
+  |   |           |   |-{sqlservr},1081
+  |   |           |   |-{sqlservr},1083
+  |   |           |   |-{sqlservr},1084
+  |   |           |   |-{sqlservr},1089
+  |   |           |   |-{sqlservr},1093
+  |   |           |   |-{sqlservr},1096
+  |   |           |   |-{sqlservr},1097
+  |   |           |   |-{sqlservr},1098
+  |   |           |   |-{sqlservr},1108
+  |   |           |   |-{sqlservr},1109
+  |   |           |   |-{sqlservr},1110
+  |   |           |   |-{sqlservr},1111
+  |   |           |   |-{sqlservr},1116
+  |   |           |   |-{sqlservr},1117
+  |   |           |   |-{sqlservr},1118
+  |   |           |   |-{sqlservr},1119
+  |   |           |   |-{sqlservr},1120
+  |   |           |   |-{sqlservr},1121
+  |   |           |   |-{sqlservr},1122
+  |   |           |   |-{sqlservr},1123
+  |   |           |   |-{sqlservr},1124
+  |   |           |   |-{sqlservr},1125
+  |   |           |   |-{sqlservr},1126
+  |   |           |   |-{sqlservr},1127
+  |   |           |   |-{sqlservr},1128
+  |   |           |   |-{sqlservr},1129
+  |   |           |   |-{sqlservr},1131
+  |   |           |   |-{sqlservr},1132
+  |   |           |   |-{sqlservr},1133
+  |   |           |   |-{sqlservr},1134
+  |   |           |   |-{sqlservr},1135
+  |   |           |   |-{sqlservr},1136
+  |   |           |   |-{sqlservr},1137
+  |   |           |   |-{sqlservr},1138
+  |   |           |   |-{sqlservr},1139
+  |   |           |   |-{sqlservr},1140
+  |   |           |   |-{sqlservr},1141
+  |   |           |   |-{sqlservr},1142
+  |   |           |   |-{sqlservr},1144
+  |   |           |   |-{sqlservr},1146
+  |   |           |   |-{sqlservr},1147
+  |   |           |   |-{sqlservr},1148
+  |   |           |   |-{sqlservr},1149
+  |   |           |   |-{sqlservr},1150
+  |   |           |   |-{sqlservr},1151
+  |   |           |   |-{sqlservr},1152
+  |   |           |   |-{sqlservr},1153
+  |   |           |   |-{sqlservr},1155
+  |   |           |   |-{sqlservr},1156
+  |   |           |   |-{sqlservr},1158
+  |   |           |   |-{sqlservr},1160
+  |   |           |   |-{sqlservr},1167
+  |   |           |   |-{sqlservr},2646
+  |   |           |   |-{sqlservr},2648
+  |   |           |   |-{sqlservr},2651
+  |   |           |   |-{sqlservr},2653
+  |   |           |   |-{sqlservr},2658
+  |   |           |   |-{sqlservr},2660
+  |   |           |   |-{sqlservr},4162
+  |   |           |   |-{sqlservr},4474
+  |   |           |   |-{sqlservr},5987
+  |   |           |   |-{sqlservr},20506
+  |   |           |   |-{sqlservr},755459
+  |   |           |   |-{sqlservr},809268
+  |   |           |   |-{sqlservr},1024657
+  |   |           |   |-{sqlservr},1222108
+  |   |           |   |-{sqlservr},1240006
+  |   |           |   |-{sqlservr},1257785
+  |   |           |   |-{sqlservr},1364054
+  |   |           |   |-{sqlservr},1381748
+  |   |           |   |-{sqlservr},1399387
+  |   |           |   |-{sqlservr},1434800
+  |   |           |   |-{sqlservr},1452436
+  |   |           |   |-{sqlservr},1487915
+  |   |           |   |-{sqlservr},1505610
+  |   |           |   |-{sqlservr},1647434
+  |   |           |   |-{sqlservr},1682707
+  |   |           |   |-{sqlservr},1682708
+  |   |           |   |-{sqlservr},1700448
+  |   |           |   |-{sqlservr},1718097
+  |   |           |   |-{sqlservr},1753688
+  |   |           |   |-{sqlservr},1753689
+  |   |           |   |-{sqlservr},1771665
+  |   |           |   |-{sqlservr},1789398
+  |   |           |   |-{sqlservr},1806942
+  |   |           |   |-{sqlservr},1824718
+  |   |           |   |-{sqlservr},1824719
+  |   |           |   |-{sqlservr},1842524
+  |   |           |   |-{sqlservr},1860142
+  |   |           |   |-{sqlservr},1862480
+  |   |           |   |-{sqlservr},1877838
+  |   |           |   |-{sqlservr},1877839
+  |   |           |   |-{sqlservr},1895571
+  |   |           |   |-{sqlservr},1895572
+  |   |           |   |-{sqlservr},1913332
+  |   |           |   |-{sqlservr},1913333
+  |   |           |   |-{sqlservr},1918871
+  |   |           |   |-{sqlservr},1930870
+  |   |           |   |-{sqlservr},1930871
+  |   |           |   |-{sqlservr},1937969
+  |   |           |   `-{sqlservr},1948163
+  |   |           |-{sqlservr},1016
+  |   |           `-{sqlservr},1018
+  |   |-{containerd-shim},803
+  |   |-{containerd-shim},804
+  |   |-{containerd-shim},805
+  |   |-{containerd-shim},806
+  |   |-{containerd-shim},807
+  |   |-{containerd-shim},808
+  |   |-{containerd-shim},809
+  |   |-{containerd-shim},810
+  |   |-{containerd-shim},811
+  |   |-{containerd-shim},812
+  |   `-{containerd-shim},1202
+  |-containerd-shim,829 -namespace moby -id 8fd0c22ae7b298cde7405fc12642e746db0fb7c320d719f5cc3aa3f01f1f3271 -address /run/containerd/containerd.sock
+  |   |-sh,854 -c /bin/sh entrypoint.sh
+  |   |   |-cron,947
+  |   |   |   `-cron,1946903
+  |   |   |       `-sh,1946905 -c test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+  |   |   |           `-run-parts,1946907 --report /etc/cron.daily
+  |   |   |               `-apt-compat,1946909 /etc/cron.daily/apt-compat
+  |   |   |                   `-sleep,1946921 372
+  |   |   `-sh,942 entrypoint.sh
+  |   |       `-java,946 -Djava.security.egd=file:/dev/./urandom -Dspring.datasource.url=jdbc:sqlserver://www-beg-db;databaseName=portal -Dspring.datasource.username=admin -Dspring.datasource.password=Admin1Admin1 -Dportal.crx.team.name=BT11 -Dportal.crx.invoices.folder=/invoices/ -jar nrjselfservice.jar
+  |   |           |-{java},948
+  |   |           |-{java},949
+  |   |           |-{java},950
+  |   |           |-{java},951
+  |   |           |-{java},952
+  |   |           |-{java},953
+  |   |           |-{java},960
+  |   |           |-{java},961
+  |   |           |-{java},962
+  |   |           |-{java},963
+  |   |           |-{java},966
+  |   |           |-{java},967
+  |   |           |-{java},968
+  |   |           |-{java},969
+  |   |           |-{java},981
+  |   |           |-{java},982
+  |   |           |-{java},1011
+  |   |           |-{java},1060
+  |   |           |-{java},1061
+  |   |           |-{java},1062
+  |   |           |-{java},1165
+  |   |           |-{java},1174
+  |   |           |-{java},1175
+  |   |           |-{java},1176
+  |   |           |-{java},1177
+  |   |           |-{java},1178
+  |   |           |-{java},1179
+  |   |           |-{java},1180
+  |   |           |-{java},1181
+  |   |           |-{java},1182
+  |   |           |-{java},1183
+  |   |           |-{java},1184
+  |   |           |-{java},1185
+  |   |           `-{java},1186
+  |   |-{containerd-shim},830
+  |   |-{containerd-shim},831
+  |   |-{containerd-shim},832
+  |   |-{containerd-shim},833
+  |   |-{containerd-shim},834
+  |   |-{containerd-shim},835
+  |   |-{containerd-shim},836
+  |   |-{containerd-shim},837
+  |   |-{containerd-shim},838
+  |   `-{containerd-shim},839
+  |-cron,525 -f
+  |-dbus-daemon,526,messagebus --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  |-dockerd,585 -H fd:// --containerd=/run/containerd/containerd.sock
+  |   |-docker-proxy,785 -proto tcp -host-ip 0.0.0.0 -host-port 8080 -container-ip 172.18.0.3 -container-port 80
+  |   |   |-{docker-proxy},787
+  |   |   |-{docker-proxy},788
+  |   |   |-{docker-proxy},789
+  |   |   |-{docker-proxy},790
+  |   |   |-{docker-proxy},791
+  |   |   |-{docker-proxy},792
+  |   |   |-{docker-proxy},793
+  |   |   `-{docker-proxy},796765
+  |   |-{dockerd},587
+  |   |-{dockerd},588
+  |   |-{dockerd},593
+  |   |-{dockerd},594
+  |   |-{dockerd},595
+  |   |-{dockerd},596
+  |   |-{dockerd},599
+  |   |-{dockerd},786
+  |   |-{dockerd},794
+  |   |-{dockerd},820
+  |   |-{dockerd},821
+  |   |-{dockerd},880
+  |   |-{dockerd},933
+  |   `-{dockerd},934
+  |-irqbalance,531 --foreground
+  |   `-{irqbalance},550
+  |-networkd-dispat,533 /usr/bin/networkd-dispatcher --run-startup-triggers
+  |-nginx,565
+  |   |-nginx,566,www-data                           
+  |   `-nginx,567,www-data                           
+  |-rsyslogd,534,syslog -n -iNONE
+  |   |-{rsyslogd},540
+  |   |-{rsyslogd},541
+  |   `-{rsyslogd},542
+  |-scoringbot,586
+  |   |-{scoringbot},589
+  |   |-{scoringbot},590
+  |   |-{scoringbot},591
+  |   |-{scoringbot},592
+  |   |-{scoringbot},2344
+  |   |-{scoringbot},33677
+  |   `-{scoringbot},243235
+  |-sshd,563
+  |   |-sshd,1945909    
+  |   |   `-bash,1946295
+  |   |       |-syscheck_hash.s,1948168 ./syscheck_hash.sh
+  |   |       |   `-find,1948175 / -type f -exec timeout 1s md5sum {} +
+  |   |       |       `-(timeout,1948477)
+  |   |       `-syscheck_linux.,1948481 ./syscheck_linux.sh
+  |   |           `-pstree,1948602 -acpul
+  |   |-sshd,1946266    
+  |   |   `-sftp-server,1946293
+  |   `-sshd,1947786    
+  |       `-bash,1947820
+  |-systemd,1946231 --user
+  |   `-(sd-pam),1946237
+  |-systemd-journal,312
+  |-systemd-logind,535
+  |-systemd-network,347,systemd-network
+  |-systemd-resolve,419,systemd-resolve
+  |-systemd-timesyn,421,systemd-timesync
+  |   `-{systemd-timesyn},521
+  |-systemd-udevd,337
+  |   |-systemd-udevd,1948528
+  |   |-systemd-udevd,1948529
+  |   |-systemd-udevd,1948530
+  |   |-systemd-udevd,1948531
+  |   |-systemd-udevd,1948532
+  |   |-systemd-udevd,1948533
+  |   |-systemd-udevd,1948534
+  |   |-systemd-udevd,1948535
+  |   |-systemd-udevd,1948536
+  |   |-systemd-udevd,1948537
+  |   `-systemd-udevd,1948538
+  `-vmtoolsd,449
+      |-{vmtoolsd},463
+      `-{vmtoolsd},466
+----------------------------------------------------------------------
+
+
+======================================================================
+ 2. Running Process List
+======================================================================
+# ps auwxf
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Apr08   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [rcu_par_gp]
+root           6  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kworker/0:0H-kblockd]
+root           9  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [mm_percpu_wq]
+root          10  0.0  0.0      0     0 ?        S    Apr08   0:03  \_ [ksoftirqd/0]
+root          11  0.0  0.0      0     0 ?        I    Apr08   1:42  \_ [rcu_sched]
+root          12  0.0  0.0      0     0 ?        S    Apr08   0:02  \_ [migration/0]
+root          13  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [idle_inject/0]
+root          14  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [cpuhp/0]
+root          15  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [cpuhp/1]
+root          16  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [idle_inject/1]
+root          17  0.0  0.0      0     0 ?        S    Apr08   0:01  \_ [migration/1]
+root          18  0.0  0.0      0     0 ?        S    Apr08   0:03  \_ [ksoftirqd/1]
+root          20  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kworker/1:0H-kblockd]
+root          21  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [kdevtmpfs]
+root          22  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [netns]
+root          23  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [rcu_tasks_kthre]
+root          24  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [kauditd]
+root          28  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [khungtaskd]
+root          29  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [oom_reaper]
+root          30  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [writeback]
+root          31  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [kcompactd0]
+root          32  0.0  0.0      0     0 ?        SN   Apr08   0:00  \_ [ksmd]
+root          33  0.0  0.0      0     0 ?        SN   Apr08   0:00  \_ [khugepaged]
+root         125  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kintegrityd]
+root         126  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kblockd]
+root         127  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [blkcg_punt_bio]
+root         128  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [tpm_dev_wq]
+root         129  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [ata_sff]
+root         130  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [md]
+root         131  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [edac-poller]
+root         132  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [devfreq_wq]
+root         133  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [watchdogd]
+root         136  0.0  0.0      0     0 ?        S    Apr08   0:02  \_ [kswapd0]
+root         137  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [ecryptfs-kthrea]
+root         140  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kthrotld]
+root         141  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/24-pciehp]
+root         142  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/25-pciehp]
+root         143  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/26-pciehp]
+root         144  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/27-pciehp]
+root         145  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/28-pciehp]
+root         146  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/29-pciehp]
+root         147  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/30-pciehp]
+root         148  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/31-pciehp]
+root         149  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/32-pciehp]
+root         150  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/33-pciehp]
+root         151  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/34-pciehp]
+root         152  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/35-pciehp]
+root         153  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/36-pciehp]
+root         154  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/37-pciehp]
+root         155  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/38-pciehp]
+root         156  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/39-pciehp]
+root         157  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/40-pciehp]
+root         158  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/41-pciehp]
+root         159  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/42-pciehp]
+root         160  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/43-pciehp]
+root         161  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/44-pciehp]
+root         162  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/45-pciehp]
+root         163  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/46-pciehp]
+root         164  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/47-pciehp]
+root         165  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/48-pciehp]
+root         166  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/49-pciehp]
+root         167  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/50-pciehp]
+root         168  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/51-pciehp]
+root         169  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/52-pciehp]
+root         170  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/53-pciehp]
+root         171  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/54-pciehp]
+root         172  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/55-pciehp]
+root         173  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [acpi_thermal_pm]
+root         174  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [scsi_eh_0]
+root         175  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [scsi_tmf_0]
+root         176  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [scsi_eh_1]
+root         177  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [scsi_tmf_1]
+root         179  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [vfio-irqfd-clea]
+root         181  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [ipv6_addrconf]
+root         192  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kstrp]
+root         196  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kworker/u257:0]
+root         212  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [charger_manager]
+root         213  0.0  0.0      0     0 ?        I<   Apr08   0:07  \_ [kworker/0:1H-kblockd]
+root         253  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [scsi_eh_2]
+root         255  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [scsi_tmf_2]
+root         256  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [vmw_pvscsi_wq_2]
+root         257  0.0  0.0      0     0 ?        I<   Apr08   0:07  \_ [kworker/1:1H-kblockd]
+root         278  0.0  0.0      0     0 ?        S    Apr08   0:13  \_ [jbd2/sda5-8]
+root         279  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [ext4-rsv-conver]
+root         366  0.0  0.0      0     0 ?        S    Apr08   0:25  \_ [irq/16-vmwgfx]
+root         367  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [ttm_swap]
+root         377  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [cryptd]
+root         503  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [nfit]
+root         604  0.0  0.0   2488   576 ?        S    Apr08   0:00  \_ bpfilter_umh
+root     1784996  0.0  0.0      0     0 ?        I    Apr12   0:04  \_ [kworker/u256:1-events_unbound]
+root     1918316  0.0  0.0      0     0 ?        I    04:47   0:00  \_ [kworker/u256:3-events_unbound]
+root     1943574  0.0  0.0      0     0 ?        I    06:13   0:00  \_ [kworker/1:2-rcu_par_gp]
+root     1943575  0.0  0.0      0     0 ?        I    06:13   0:00  \_ [kworker/0:1-events]
+root     1945044  0.0  0.0      0     0 ?        I    06:18   0:00  \_ [kworker/u256:0-events_power_efficient]
+root     1945612  0.0  0.0      0     0 ?        I    06:20   0:00  \_ [kworker/1:0-events]
+root     1945613  0.0  0.0      0     0 ?        I    06:20   0:00  \_ [kworker/0:0-rcu_par_gp]
+root     1947492  0.0  0.0      0     0 ?        I    06:26   0:00  \_ [kworker/1:1-events]
+root           1  0.0  0.4 167120  9072 ?        Ss   Apr08   2:10 /sbin/init splash
+root         312  0.0  2.6 170324 53332 ?        S<s  Apr08   0:14 /lib/systemd/systemd-journald
+root         337  0.0  0.2  21092  4136 ?        Ss   Apr08   0:01 /lib/systemd/systemd-udevd
+root     1948528  0.0  0.1  21092  2616 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948529  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948530  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948531  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948532  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948533  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948534  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948535  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948536  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948537  0.0  0.1  21092  2800 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948538  0.0  0.1  21092  2800 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+systemd+     347  0.0  0.2  18664  5416 ?        Ss   Apr08   0:03 /lib/systemd/systemd-networkd
+systemd+     419  0.0  0.4  24044  8336 ?        Ss   Apr08   0:08 /lib/systemd/systemd-resolved
+systemd+     421  0.0  0.2  90380  4820 ?        Ssl  Apr08   0:00 /lib/systemd/systemd-timesyncd
+root         448  0.0  0.2  50436  5652 ?        Ss   Apr08   0:00 /usr/bin/VGAuthService
+root         449  0.0  0.2 239176  4656 ?        Ssl  Apr08   4:51 /usr/bin/vmtoolsd
+root         523  0.0  0.2 238476  4852 ?        Ssl  Apr08   0:07 /usr/lib/accountsservice/accounts-daemon
+root         524  0.0  0.0   2540   772 ?        Ss   Apr08   0:00 /usr/sbin/acpid
+root         525  0.0  0.1   9724  2980 ?        Ss   Apr08   0:00 /usr/sbin/cron -f
+message+     526  0.0  0.1   7380  3664 ?        Ss   Apr08   0:19 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root         531  0.0  0.1  81940  3276 ?        Ssl  Apr08   0:13 /usr/sbin/irqbalance --foreground
+root         533  0.0  0.5  31916 11476 ?        Ss   Apr08   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+syslog       534  0.0  0.2 224320  4904 ?        Ssl  Apr08   0:02 /usr/sbin/rsyslogd -n -iNONE
+root         535  0.0  0.3  16992  6812 ?        Ss   Apr08   0:07 /lib/systemd/systemd-logind
+root         560  0.0  0.7 1343880 15380 ?       Ssl  Apr08   4:02 /usr/bin/containerd
+root         562  0.0  0.0   8740  1680 tty1     Ss+  Apr08   0:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+root         563  0.0  0.2  12156  5360 ?        Ss   Apr08   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root     1945909  0.0  0.4  13864  8164 ?        Ss   06:21   0:00  \_ sshd: root@pts/0
+root     1946295  0.0  0.2  11204  5192 pts/0    Ss   06:22   0:00  |   \_ -bash
+root     1948168  0.0  0.1   9936  3600 pts/0    T    06:28   0:00  |       \_ /bin/bash ./syscheck_hash.sh
+root     1948175  0.4  0.1  11224  3404 pts/0    T    06:28   0:00  |       |   \_ find / -type f -exec timeout 1s md5sum {} +
+root     1948477  0.0  0.0      0     0 pts/0    Z    06:29   0:00  |       |       \_ [timeout] <defunct>
+root     1948481  0.2  0.2  11464  5212 pts/0    S+   06:29   0:00  |       \_ /bin/bash ./syscheck_linux.sh
+root     1948606  0.0  0.1  11936  3412 pts/0    R+   06:29   0:00  |           \_ ps auwxf
+root     1946266  0.0  0.3  13864  7980 ?        Ss   06:22   0:00  \_ sshd: root@notty
+root     1946293  0.0  0.1   5884  3744 ?        Ss   06:22   0:00  |   \_ /usr/lib/openssh/sftp-server
+root     1947786  0.0  0.4  13860  8072 ?        Ss   06:27   0:00  \_ sshd: root@notty
+root     1947820  0.0  0.1   9884  3464 ?        Ss   06:27   0:00      \_ -bash
+root         565  0.0  0.0  55268  1404 ?        Ss   Apr08   0:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+www-data     566  0.0  0.2  55964  5092 ?        S    Apr08   1:10  \_ nginx: worker process
+www-data     567  0.0  0.1  55832  3800 ?        S    Apr08   0:00  \_ nginx: worker process
+root         585  0.0  1.8 1824388 37784 ?       Ssl  Apr08   2:52 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root         785  0.0  0.2 1298356 4108 ?        Sl   Apr08   0:39  \_ /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8080 -container-ip 172.18.0.3 -container-port 80
+root         586  0.0  0.9 714964 18516 ?        Ssl  Apr08   1:05 /home/scoringbot/scoringbot/scoringbot
+root         802  0.0  0.1 711024  2180 ?        Sl   Apr08   0:20 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 55aff7006cdc6ce185aeb593d4d34bfbf354fda774ba3a56077f70484cd3a308 -address /run/containerd/containerd.sock
+root         853  0.0  0.0   2608     0 ?        Ss   Apr08   0:00  \_ /bin/sh -c /bin/bash ./entrypoint.sh
+root         964  0.0  0.0   3976   352 ?        S    Apr08   0:00      \_ /bin/bash ./entrypoint.sh
+root         977  0.0  0.1  61620  2600 ?        Sl   Apr08   0:01          \_ /opt/mssql/bin/sqlservr
+root        1017  0.8 34.0 6325436 683944 ?      Sl   Apr08  58:12              \_ /opt/mssql/bin/sqlservr
+root         829  0.0  0.1 711024  2756 ?        Sl   Apr08   0:18 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 8fd0c22ae7b298cde7405fc12642e746db0fb7c320d719f5cc3aa3f01f1f3271 -address /run/containerd/containerd.sock
+root         854  0.0  0.0   2412     0 ?        Ss   Apr08   0:00  \_ /bin/sh -c /bin/sh entrypoint.sh
+root         942  0.0  0.0   2412     0 ?        S    Apr08   0:00      \_ /bin/sh entrypoint.sh
+root         946  0.1 15.8 3144684 318108 ?      Sl   Apr08  10:50      |   \_ /usr/local/openjdk-11/bin/java -Djava.security.egd=file:/dev/./urandom -Dspring.datasource.url=jdbc:sqlserver://www-beg-db;databaseName=portal -Dspring.datasource.username=admin -Dspring.datasource.password=Admin1Admin1 -Dportal.crx.team.name=BT11 -Dportal.crx.invoices.folder=/invoices/ -jar nrjselfservice.jar
+root         947  0.0  0.0   5568  1400 ?        Ss   Apr08   0:02      \_ cron
+root     1946903  0.0  0.0   8040  1832 ?        S    06:25   0:00          \_ CRON
+root     1946905  0.0  0.0   2412    68 ?        Ss   06:25   0:00              \_ /bin/sh -c test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+root     1946907  0.0  0.0   2304    84 ?        S    06:25   0:00                  \_ run-parts --report /etc/cron.daily
+root     1946909  0.0  0.0   2412    68 ?        S    06:25   0:00                      \_ /bin/sh /etc/cron.daily/apt-compat
+root     1946921  0.0  0.0   2324    88 ?        S    06:25   0:00                          \_ sleep 372
+root     1946231  0.0  0.4  18524  8840 ?        Ss   06:22   0:00 /lib/systemd/systemd --user
+root     1946237  0.0  0.1 168460  2852 ?        S    06:22   0:00  \_ (sd-pam)
+----------------------------------------------------------------------
+
+
+======================================================================
+ 3. Open File List
+======================================================================
+# lsof -i
+COMMAND       PID            USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+systemd-r     419 systemd-resolve   12u  IPv4   30018      0t0  UDP localhost:domain 
+systemd-r     419 systemd-resolve   13u  IPv4   30019      0t0  TCP localhost:domain (LISTEN)
+sshd          563            root    3u  IPv4   30832      0t0  TCP *:ssh (LISTEN)
+sshd          563            root    4u  IPv6   30843      0t0  TCP *:ssh (LISTEN)
+nginx         565            root    6u  IPv4   30859      0t0  TCP *:http (LISTEN)
+nginx         565            root    7u  IPv6   30860      0t0  TCP *:http (LISTEN)
+nginx         565            root    8u  IPv4   30861      0t0  TCP *:https (LISTEN)
+nginx         565            root    9u  IPv6   30862      0t0  TCP *:https (LISTEN)
+nginx         566        www-data    6u  IPv4   30859      0t0  TCP *:http (LISTEN)
+nginx         566        www-data    7u  IPv6   30860      0t0  TCP *:http (LISTEN)
+nginx         566        www-data    8u  IPv4   30861      0t0  TCP *:https (LISTEN)
+nginx         566        www-data    9u  IPv6   30862      0t0  TCP *:https (LISTEN)
+nginx         567        www-data    6u  IPv4   30859      0t0  TCP *:http (LISTEN)
+nginx         567        www-data    7u  IPv6   30860      0t0  TCP *:http (LISTEN)
+nginx         567        www-data    8u  IPv4   30861      0t0  TCP *:https (LISTEN)
+nginx         567        www-data    9u  IPv6   30862      0t0  TCP *:https (LISTEN)
+scoringbo     586            root    3u  IPv4 3378279      0t0  TCP www.beg.11.berylia.org:51010->scoring-c2.berylia.org:https (ESTABLISHED)
+docker-pr     785            root    4u  IPv4   31608      0t0  TCP *:http-alt (LISTEN)
+sshd      1945909            root    4u  IPv4 3377393      0t0  TCP www.beg.11.berylia.org:ssh->10.11.60.52:59347 (ESTABLISHED)
+sshd      1945909            root    9u  IPv6 3378758      0t0  TCP localhost:6010 (LISTEN)
+sshd      1945909            root   10u  IPv4 3378759      0t0  TCP localhost:6010 (LISTEN)
+sshd      1946266            root    4u  IPv4 3377862      0t0  TCP www.beg.11.berylia.org:ssh->10.11.60.52:59593 (ESTABLISHED)
+sshd      1947786            root    4u  IPv4 3381163      0t0  TCP www.beg.11.berylia.org:ssh->10.11.60.52:59786 (ESTABLISHED)
+----------------------------------------------------------------------
+
+
+======================================================================
+ 4. CPU State
+======================================================================
+# top -n 1
+[?1h=[?25l[H[2J(B[mtop - 06:29:25 up 4 days, 13:01,  1 user,  load average: 0.37, 0.12, 0.03(B[m[39;49m(B[m[39;49m[K
+Tasks:(B[m[39;49m[1m 163 (B[m[39;49mtotal,(B[m[39;49m[1m   1 (B[m[39;49mrunning,(B[m[39;49m[1m 159 (B[m[39;49msleeping,(B[m[39;49m[1m   2 (B[m[39;49mstopped,(B[m[39;49m[1m   1 (B[m[39;49mzombie(B[m[39;49m(B[m[39;49m[K
+%Cpu(s):(B[m[39;49m[1m  0.0 (B[m[39;49mus,(B[m[39;49m[1m  3.2 (B[m[39;49msy,(B[m[39;49m[1m  0.0 (B[m[39;49mni,(B[m[39;49m[1m 96.8 (B[m[39;49mid,(B[m[39;49m[1m  0.0 (B[m[39;49mwa,(B[m[39;49m[1m  0.0 (B[m[39;49mhi,(B[m[39;49m[1m  0.0 (B[m[39;49msi,(B[m[39;49m[1m  0.0 (B[m[39;49mst(B[m[39;49m(B[m[39;49m[K
+MiB Mem :(B[m[39;49m[1m   1959.9 (B[m[39;49mtotal,(B[m[39;49m[1m     71.9 (B[m[39;49mfree,(B[m[39;49m[1m   1279.4 (B[m[39;49mused,(B[m[39;49m[1m    608.6 (B[m[39;49mbuff/cache(B[m[39;49m(B[m[39;49m[K
+MiB Swap:(B[m[39;49m[1m   1162.4 (B[m[39;49mtotal,(B[m[39;49m[1m   1071.4 (B[m[39;49mfree,(B[m[39;49m[1m     91.0 (B[m[39;49mused.(B[m[39;49m[1m    496.7 (B[m[39;49mavail Mem (B[m[39;49m(B[m[39;49m[K
+[K
+[7m    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                                (B[m[39;49m[K
+(B[m      1 root      20   0  167120   9072   6676 S   0.0   0.5   2:10.61 systemd                                                                                (B[m[39;49m[K
+(B[m      2 root      20   0       0      0      0 S   0.0   0.0   0:00.10 kthreadd                                                                               (B[m[39;49m[K
+(B[m      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp                                                                                 (B[m[39;49m[K
+(B[m      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp                                                                             (B[m[39;49m[K
+(B[m      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-kblockd                                                                   (B[m[39;49m[K
+(B[m      9 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq                                                                           (B[m[39;49m[K
+(B[m     10 root      20   0       0      0      0 S   0.0   0.0   0:03.71 ksoftirqd/0                                                                            (B[m[39;49m[K
+(B[m     11 root      20   0       0      0      0 I   0.0   0.0   1:42.88 rcu_sched                                                                              (B[m[39;49m[K
+(B[m     12 root      rt   0       0      0      0 S   0.0   0.0   0:02.04 migration/0                                                                            (B[m[39;49m[K
+(B[m     13 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0                                                                          (B[m[39;49m[K
+(B[m     14 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                                                (B[m[39;49m[K
+(B[m     15 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1                                                                                (B[m[39;49m[K
+(B[m     16 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1                                                                          (B[m[39;49m[K
+(B[m     17 root      rt   0       0      0      0 S   0.0   0.0   0:01.99 migration/1                                                                            (B[m[39;49m[K
+(B[m     18 root      20   0       0      0      0 S   0.0   0.0   0:03.40 ksoftirqd/1                                                                            (B[m[39;49m[K
+(B[m     20 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0H-kblockd                                                                   (B[m[39;49m[K
+(B[m     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs                                                                              (B[m[39;49m[K
+(B[m     22 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns                                                                                  (B[m[39;49m[K
+(B[m     23 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_kthre                                                                        (B[m[39;49m[K
+(B[m     24 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kauditd                                                                                (B[m[39;49m[K
+(B[m     28 root      20   0       0      0      0 S   0.0   0.0   0:00.37 khungtaskd                                                                             (B[m[39;49m[K
+(B[m     29 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper                                                                             (B[m[39;49m[K
+(B[m     30 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 writeback                                                                              (B[m[39;49m[K
+(B[m     31 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kcompactd0                                                                             (B[m[39;49m[K
+(B[m     32 root      25   5       0      0      0 S   0.0   0.0   0:00.00 ksmd                                                                                   (B[m[39;49m[K
+(B[m     33 root      39  19       0      0      0 S   0.0   0.0   0:00.00 khugepaged                                                                             (B[m[39;49m[K
+(B[m    125 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kintegrityd                                                                            (B[m[39;49m[K
+(B[m    126 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kblockd                                                                                (B[m[39;49m[K
+(B[m    127 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 blkcg_punt_bio                                                                         (B[m[39;49m[K
+(B[m    128 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 tpm_dev_wq                                                                             (B[m[39;49m[K
+(B[m    129 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ata_sff                                                                                (B[m[39;49m[K
+(B[m    130 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 md                                                                                     (B[m[39;49m[K
+(B[m    131 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 edac-poller                                                                            (B[m[39;49m[K
+(B[m    132 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 devfreq_wq                                                                             (B[m[39;49m[K
+(B[m    133 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 watchdogd                                                                              (B[m[39;49m[K[?1l>[43;1H
+[?12l[?25h[K----------------------------------------------------------------------
+
+
+
+########################## 
+#  FILE SYSTEM             
+########################## 
+
+======================================================================
+ 1.1. System UPTIME  
+======================================================================
+Check> System UPTIME
+----------------------------------------------------------------------
+# uptime
+ 06:29:25 up 4 days, 13:01,  1 user,  load average: 0.37, 0.12, 0.03
+----------------------------------------------------------------------
+
+
+======================================================================
+ 2. Kernel Version 
+======================================================================
+Check> Kernel Version
+----------------------------------------------------------------------
+# uname -a
+Linux www 5.4.0-26-generic #30-Ubuntu SMP Mon Apr 20 16:58:30 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+----------------------------------------------------------------------
+
+
+======================================================================
+ 3. Memory State 
+======================================================================
+Check> Overload Memory State, cpu id(=0) - Abnormal
+----------------------------------------------------------------------
+# vmstat 2 5 | awk '{now=strftime(%F %T); print now,"",./syscheck_linux.sh}'
+2022-04-13 06:29:33  procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+2022-04-13 06:29:33   r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+2022-04-13 06:29:33   0  1  93184  73616 117504 505848    0    0     4    11   22   10  0  0 99  0  0
+2022-04-13 06:29:33   0  0  93184  88928 117256 491052    0    0   214  1970  516  914  1  1 97  2  0
+2022-04-13 06:29:33   0  0  93184  93400 117256 490676    0    0     0     0  454  832  1  0 99  0  0
+2022-04-13 06:29:33   0  0  93184  93400 117256 490800    0    0    64     0  497  895  1  1 99  0  0
+2022-04-13 06:29:33   0  0  93184  93400 117264 490812    0    0     0   844  474  868  0  0 100  0  0
+----------------------------------------------------------------------
+
+
+======================================================================
+ 4.1. Disk Use 
+======================================================================
+Check> Disk Use
+----------------------------------------------------------------------
+# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            953M     0  953M   0% /dev
+tmpfs           196M  992K  196M   1% /run
+/dev/sda5        24G  6.3G   17G  28% /
+tmpfs           980M     0  980M   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           980M     0  980M   0% /sys/fs/cgroup
+/dev/sda1       511M  4.0K  511M   1% /boot/efi
+overlay          24G  6.3G   17G  28% /var/lib/docker/overlay2/c4d319f3758970307c6d7ae24f7a5f20b0b7d6554bc35b0f0c3877ae2bb3c579/merged
+overlay          24G  6.3G   17G  28% /var/lib/docker/overlay2/9e052722e57b1e2170620b83b9fea2ecadac38017001cfdc3f22844b106dc079/merged
+tmpfs           196M     0  196M   0% /run/user/0
+----------------------------------------------------------------------
+
+======================================================================
+ 4.2. Physical Disk Use 
+======================================================================
+Check> Physical Disk Use
+----------------------------------------------------------------------
+# fdisk -l 
+Disk /dev/sda: 25 GiB, 26843545600 bytes, 52428800 sectors
+Disk model: Virtual disk    
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x4b34c220
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *       2048  1050623  1048576  512M  b W95 FAT32
+/dev/sda2       1052670 52426751 51374082 24.5G  5 Extended
+/dev/sda5       1052672 52426751 51374080 24.5G 83 Linux
+----------------------------------------------------------------------
+
+======================================================================
+ 4.3. Partition Use 
+======================================================================
+Check> Partition Use
+----------------------------------------------------------------------
+# lsblk 
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   25G  0 disk 
+├─sda1   8:1    0  512M  0 part /boot/efi
+├─sda2   8:2    0    1K  0 part 
+└─sda5   8:5    0 24.5G  0 part /
+sr0     11:0    1 1024M  0 rom  
+----------------------------------------------------------------------
+
+
+======================================================================
+ 5. umask 
+======================================================================
+Check> umask Value 0022 - Normal
+----------------------------------------------------------------------
+# umask 
+0022
+----------------------------------------------------------------------
+
+
+======================================================================
+ 6. System Enviroment Value 
+======================================================================
+Check> System Enviroment Valu 
+----------------------------------------------------------------------
+# printenv
+SHELL=/bin/bash
+LANGUAGE=en_US:
+PWD=/var
+LOGNAME=root
+XDG_SESSION_TYPE=tty
+MOTD_SHOWN=pam
+HOME=/root
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SSH_CONNECTION=10.11.60.52 59347 100.96.11.6 22
+LESSCLOSE=/usr/bin/lesspipe %s %s
+XDG_SESSION_CLASS=user
+TERM=xterm
+LESSOPEN=| /usr/bin/lesspipe %s
+USER=root
+DISPLAY=localhost:10.0
+SHLVL=2
+XDG_SESSION_ID=6780
+XDG_RUNTIME_DIR=/run/user/0
+SSH_CLIENT=10.11.60.52 59347 22
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/0/bus
+SSH_TTY=/dev/pts/0
+OLDPWD=/var/www
+_=/usr/bin/printenv
+----------------------------------------------------------------------
+
+
+======================================================================
+ 7.1. System Enviroment PATH 
+======================================================================
+Check> System Enviroment Value, include ".", "::" - Abnormal
+----------------------------------------------------------------------
+# cat /etc/passwd 
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+----------------------------------------------------------------------
+
+======================================================================
+ 7.2. Chkrootkit Check 
+======================================================================
+# chkrootkit 
+chkrootkit File Not Found
+----------------------------------------------------------------------
+
+======================================================================
+ 7.3. Rootkit Hunter Check 
+======================================================================
+# rkhunter -c --sk 
+rkhunter Not Install
+----------------------------------------------------------------------
+
+
+======================================================================
+ 8.1. Start Programs 
+======================================================================
+Check> Start Programs Check
+Check> Permission '-----w--w-' set - Abnormal
+----------------------------------------------------------------------
+# ls -al /etc/init.d/*
+-rwxr-xr-x 1 root root 2269 Nov 28  2019 /etc/init.d/acpid
+-rwxr-xr-x 1 root root 3740 Apr  1  2020 /etc/init.d/apparmor
+-rwxr-xr-x 1 root root 1232 Mar 27  2020 /etc/init.d/console-setup.sh
+-rwxr-xr-x 1 root root 3059 Feb 11  2020 /etc/init.d/cron
+-rwxr-xr-x 1 root root 3152 Sep 30  2019 /etc/init.d/dbus
+-rwxr-xr-x 1 root root 3843 Mar 24 01:44 /etc/init.d/docker
+-rwxr-xr-x 1 root root  985 Jan 13  2021 /etc/init.d/grub-common
+-rwxr-xr-x 1 root root 3809 Jul 28  2019 /etc/init.d/hwclock.sh
+-rwxr-xr-x 1 root root 2638 Dec 13  2019 /etc/init.d/irqbalance
+-rwxr-xr-x 1 root root 1479 Nov 27  2019 /etc/init.d/keyboard-setup.sh
+-rwxr-xr-x 1 root root 2044 Feb 19  2020 /etc/init.d/kmod
+-rwxr-xr-x 1 root root 4579 Feb  4  2019 /etc/init.d/nginx
+-rwxr-xr-x 1 root root 1846 Jun 22  2020 /etc/init.d/open-vm-tools
+-rwxr-xr-x 1 root root 1366 Mar 23  2020 /etc/init.d/plymouth
+-rwxr-xr-x 1 root root  752 Mar 23  2020 /etc/init.d/plymouth-log
+-rwxr-xr-x 1 root root  924 Feb 13  2020 /etc/init.d/procps
+-rwxr-xr-x 1 root root 4417 Oct 15  2019 /etc/init.d/rsync
+-rwxr-xr-x 1 root root 2864 Mar  7  2019 /etc/init.d/rsyslog
+-rwxr-xr-x 1 root root 3939 May 29  2020 /etc/init.d/ssh
+-rwxr-xr-x 1 root root 6872 Apr 22  2020 /etc/init.d/udev
+-rwxr-xr-x 1 root root 2083 Jan 21  2020 /etc/init.d/ufw
+-rwxr-xr-x 1 root root 1306 Apr  2  2020 /etc/init.d/uuidd
+----------------------------------------------------------------------
+
+======================================================================
+ 8.2. Start Programs State
+======================================================================
+Check> Start Programs State
+----------------------------------------------------------------------
+# chkconfig --list
+chkconfig Command Not Found
+----------------------------------------------------------------------
+
+
+======================================================================
+ 9. System Timer 
+======================================================================
+Check> Abnormal System Timer 
+----------------------------------------------------------------------
+# systemctl list-unit-files --type=timer
+UNIT FILE                    STATE   VENDOR PRESET
+apt-daily-upgrade.timer      enabled enabled      
+apt-daily.timer              enabled enabled      
+e2scrub_all.timer            enabled enabled      
+fstrim.timer                 enabled enabled      
+logrotate.timer              enabled enabled      
+man-db.timer                 enabled enabled      
+motd-news.timer              enabled enabled      
+systemd-tmpfiles-clean.timer static  enabled      
+
+8 unit files listed.
+----------------------------------------------------------------------
+
+
+======================================================================
+ 10.1. root Crontab Schedule List 
+======================================================================
+Check> Abnormal Command 
+----------------------------------------------------------------------
+# crontab -u root -l
+ No Data
+----------------------------------------------------------------------
+
+======================================================================
+ 10.2. gt User Crontab Schedule List 
+======================================================================
+Check> Abnormal Command 
+----------------------------------------------------------------------
+# crontab -u gt -l
+ No Data
+----------------------------------------------------------------------
+======================================================================
+ 10.2. scoringbot User Crontab Schedule List 
+======================================================================
+Check> Abnormal Command 
+----------------------------------------------------------------------
+# crontab -u scoringbot -l
+ No Data
+----------------------------------------------------------------------
+
+
+======================================================================
+ 11. System Command Permission 
+======================================================================
+Check> Permission '-rwxr-xr-x', '---x------' - Normal 
+Check> Permission '-----w--w-' set - Abnormal 
+----------------------------------------------------------------------
+-rwxr-xr-x 1 root root 129072 Feb 27  2020 /usr/bin/top
+-rwxr-xr-x 1 root root 36008 Nov 12  2019 /usr/bin/pstree
+lrwxrwxrwx 1 root root 19 Feb 10  2021 /usr/bin/w -> /etc/alternatives/w
+-rwxr-xr-x 1 root root 137688 Feb 27  2020 /usr/bin/ps
+-rwxr-xr-x 1 root root 59768 Sep  5  2019 /usr/bin/who
+-rwxr-xr-x 1 root root 320160 Feb 18  2020 /usr/bin/find
+-rwxr-xr-x 1 root root 93128 Sep  5  2019 /usr/bin/df
+netstat Command Not Found
+ifconfig Command Not Found
+-rwxr-xr-x 1 root root 175744 Sep  3  2019 /usr/bin/lsof
+-rwxr-xr-x 1 root root 230968 Jul 28  2018 /usr/bin/make
+lrwxrwxrwx 1 root root 5 Mar 20  2020 /usr/bin/gcc -> gcc-9
+lrwxrwxrwx 1 root root 20 Apr  4 15:42 /usr/bin/cc -> /etc/alternatives/cc
+lrwxrwxrwx 1 root root 5 Mar 20  2020 /usr/bin/g++ -> g++-9
+lrwxrwxrwx 1 root root 21 Apr  4 15:42 /usr/bin/c++ -> /etc/alternatives/c++
+finger Command Not Found
+-rwxr-xr-x 1 root root 109360 Apr 15  2020 /usr/bin/nslookup
+-rwxr-xr-x 1 root root 35496 Apr  2  2020 /usr/bin/whereis
+rlog Command Not Found
+lrwxrwxrwx 1 root root 24 Feb 10  2021 /usr/bin/rlogin -> /etc/alternatives/rlogin
+-rwxr-xr-x 1 root root 946 Dec  7  2019 /usr/bin/which
+mail Command Not Found
+-rw-r--r-- 1 root root 206 Apr  8 17:19 /etc/hosts
+-rw-r--r-- 1 root root 711 Feb 10  2021 /etc/hosts.deny
+-rw-r--r-- 1 root root 411 Feb 10  2021 /etc/hosts.allow
+lynx Command Not Found
+-rwxr-xr-x 1 root root 544472 Nov 12 17:09 /usr/bin/wget
+-rwxr-xr-x 1 root root 239848 Sep 10  2021 /usr/bin/curl
+======================================================================
+
+
+
+----------------------------------------------------------------------
+

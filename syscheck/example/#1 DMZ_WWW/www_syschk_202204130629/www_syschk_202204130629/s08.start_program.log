@@ -1,0 +1,40 @@
+======================================================================
+ 8.1. Start Programs 
+======================================================================
+Check> Start Programs Check
+Check> Permission '-----w--w-' set - Abnormal
+----------------------------------------------------------------------
+# ls -al /etc/init.d/*
+-rwxr-xr-x 1 root root 2269 Nov 28  2019 /etc/init.d/acpid
+-rwxr-xr-x 1 root root 3740 Apr  1  2020 /etc/init.d/apparmor
+-rwxr-xr-x 1 root root 1232 Mar 27  2020 /etc/init.d/console-setup.sh
+-rwxr-xr-x 1 root root 3059 Feb 11  2020 /etc/init.d/cron
+-rwxr-xr-x 1 root root 3152 Sep 30  2019 /etc/init.d/dbus
+-rwxr-xr-x 1 root root 3843 Mar 24 01:44 /etc/init.d/docker
+-rwxr-xr-x 1 root root  985 Jan 13  2021 /etc/init.d/grub-common
+-rwxr-xr-x 1 root root 3809 Jul 28  2019 /etc/init.d/hwclock.sh
+-rwxr-xr-x 1 root root 2638 Dec 13  2019 /etc/init.d/irqbalance
+-rwxr-xr-x 1 root root 1479 Nov 27  2019 /etc/init.d/keyboard-setup.sh
+-rwxr-xr-x 1 root root 2044 Feb 19  2020 /etc/init.d/kmod
+-rwxr-xr-x 1 root root 4579 Feb  4  2019 /etc/init.d/nginx
+-rwxr-xr-x 1 root root 1846 Jun 22  2020 /etc/init.d/open-vm-tools
+-rwxr-xr-x 1 root root 1366 Mar 23  2020 /etc/init.d/plymouth
+-rwxr-xr-x 1 root root  752 Mar 23  2020 /etc/init.d/plymouth-log
+-rwxr-xr-x 1 root root  924 Feb 13  2020 /etc/init.d/procps
+-rwxr-xr-x 1 root root 4417 Oct 15  2019 /etc/init.d/rsync
+-rwxr-xr-x 1 root root 2864 Mar  7  2019 /etc/init.d/rsyslog
+-rwxr-xr-x 1 root root 3939 May 29  2020 /etc/init.d/ssh
+-rwxr-xr-x 1 root root 6872 Apr 22  2020 /etc/init.d/udev
+-rwxr-xr-x 1 root root 2083 Jan 21  2020 /etc/init.d/ufw
+-rwxr-xr-x 1 root root 1306 Apr  2  2020 /etc/init.d/uuidd
+----------------------------------------------------------------------
+
+======================================================================
+ 8.2. Start Programs State
+======================================================================
+Check> Start Programs State
+----------------------------------------------------------------------
+# chkconfig --list
+chkconfig Command Not Found
+----------------------------------------------------------------------
+

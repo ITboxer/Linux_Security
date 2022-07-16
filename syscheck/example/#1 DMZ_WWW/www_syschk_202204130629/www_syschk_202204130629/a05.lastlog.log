@@ -1,0 +1,58 @@
+======================================================================
+ 5.1. Last Account - last
+======================================================================
+Check> Do not use Account history. 
+----------------------------------------------------------------------
+# last
+root     pts/0        10.11.60.52      Wed Apr 13 06:23   still logged in
+reboot   system boot  5.4.0-26-generic Fri Apr  8 17:28   still running
+gt       pts/0        10.85.5.139      Fri Apr  8 17:24 - 17:24  (00:00)
+gt       pts/0        10.85.5.139      Fri Apr  8 17:24 - 17:24  (00:00)
+reboot   system boot  5.4.0-26-generic Fri Apr  8 17:23 - 17:27  (00:03)
+gt       pts/0        10.85.5.139      Fri Apr  8 17:23 - 17:23  (00:00)
+gt       pts/0        10.85.5.139      Fri Apr  8 17:23 - 17:23  (00:00)
+
+wtmp begins Fri Apr  8 17:23:40 2022
+----------------------------------------------------------------------
+
+======================================================================
+ 5.2. Last Account - lastlog
+======================================================================
+Check> Do not use Account history. 
+----------------------------------------------------------------------
+# lastlog
+Username         Port     From             Latest
+root             pts/0    10.11.60.52      Wed Apr 13 06:23:00 +0000 2022
+daemon                                     **Never logged in**
+bin                                        **Never logged in**
+sys                                        **Never logged in**
+sync                                       **Never logged in**
+games                                      **Never logged in**
+man                                        **Never logged in**
+lp                                         **Never logged in**
+mail                                       **Never logged in**
+news                                       **Never logged in**
+uucp                                       **Never logged in**
+proxy                                      **Never logged in**
+www-data                                   **Never logged in**
+backup                                     **Never logged in**
+list                                       **Never logged in**
+irc                                        **Never logged in**
+gnats                                      **Never logged in**
+nobody                                     **Never logged in**
+systemd-network                            **Never logged in**
+systemd-resolve                            **Never logged in**
+systemd-timesync                           **Never logged in**
+messagebus                                 **Never logged in**
+syslog                                     **Never logged in**
+_apt                                       **Never logged in**
+uuidd                                      **Never logged in**
+tcpdump                                    **Never logged in**
+sshd                                       **Never logged in**
+systemd-coredump                           **Never logged in**
+gt               pts/0    10.85.5.139      Fri Apr  8 17:24:17 +0000 2022
+scoringbot                                 **Never logged in**
+root             pts/0    10.11.60.52      Wed Apr 13 06:23:00 +0000 2022
+nobody                                     **Never logged in**
+----------------------------------------------------------------------
+

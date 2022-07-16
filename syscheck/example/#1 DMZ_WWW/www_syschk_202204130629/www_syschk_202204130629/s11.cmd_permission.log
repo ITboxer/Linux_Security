@@ -1,0 +1,36 @@
+======================================================================
+ 11. System Command Permission 
+======================================================================
+Check> Permission '-rwxr-xr-x', '---x------' - Normal 
+Check> Permission '-----w--w-' set - Abnormal 
+----------------------------------------------------------------------
+-rwxr-xr-x 1 root root 129072 Feb 27  2020 /usr/bin/top
+-rwxr-xr-x 1 root root 36008 Nov 12  2019 /usr/bin/pstree
+lrwxrwxrwx 1 root root 19 Feb 10  2021 /usr/bin/w -> /etc/alternatives/w
+-rwxr-xr-x 1 root root 137688 Feb 27  2020 /usr/bin/ps
+-rwxr-xr-x 1 root root 59768 Sep  5  2019 /usr/bin/who
+-rwxr-xr-x 1 root root 320160 Feb 18  2020 /usr/bin/find
+-rwxr-xr-x 1 root root 93128 Sep  5  2019 /usr/bin/df
+netstat Command Not Found
+ifconfig Command Not Found
+-rwxr-xr-x 1 root root 175744 Sep  3  2019 /usr/bin/lsof
+-rwxr-xr-x 1 root root 230968 Jul 28  2018 /usr/bin/make
+lrwxrwxrwx 1 root root 5 Mar 20  2020 /usr/bin/gcc -> gcc-9
+lrwxrwxrwx 1 root root 20 Apr  4 15:42 /usr/bin/cc -> /etc/alternatives/cc
+lrwxrwxrwx 1 root root 5 Mar 20  2020 /usr/bin/g++ -> g++-9
+lrwxrwxrwx 1 root root 21 Apr  4 15:42 /usr/bin/c++ -> /etc/alternatives/c++
+finger Command Not Found
+-rwxr-xr-x 1 root root 109360 Apr 15  2020 /usr/bin/nslookup
+-rwxr-xr-x 1 root root 35496 Apr  2  2020 /usr/bin/whereis
+rlog Command Not Found
+lrwxrwxrwx 1 root root 24 Feb 10  2021 /usr/bin/rlogin -> /etc/alternatives/rlogin
+-rwxr-xr-x 1 root root 946 Dec  7  2019 /usr/bin/which
+mail Command Not Found
+-rw-r--r-- 1 root root 206 Apr  8 17:19 /etc/hosts
+-rw-r--r-- 1 root root 711 Feb 10  2021 /etc/hosts.deny
+-rw-r--r-- 1 root root 411 Feb 10  2021 /etc/hosts.allow
+lynx Command Not Found
+-rwxr-xr-x 1 root root 544472 Nov 12 17:09 /usr/bin/wget
+-rwxr-xr-x 1 root root 239848 Sep 10  2021 /usr/bin/curl
+======================================================================
+

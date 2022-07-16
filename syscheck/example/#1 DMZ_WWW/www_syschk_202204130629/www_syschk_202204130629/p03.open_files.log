@@ -1,0 +1,30 @@
+======================================================================
+ 3. Open File List
+======================================================================
+# lsof -i
+COMMAND       PID            USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+systemd-r     419 systemd-resolve   12u  IPv4   30018      0t0  UDP localhost:domain 
+systemd-r     419 systemd-resolve   13u  IPv4   30019      0t0  TCP localhost:domain (LISTEN)
+sshd          563            root    3u  IPv4   30832      0t0  TCP *:ssh (LISTEN)
+sshd          563            root    4u  IPv6   30843      0t0  TCP *:ssh (LISTEN)
+nginx         565            root    6u  IPv4   30859      0t0  TCP *:http (LISTEN)
+nginx         565            root    7u  IPv6   30860      0t0  TCP *:http (LISTEN)
+nginx         565            root    8u  IPv4   30861      0t0  TCP *:https (LISTEN)
+nginx         565            root    9u  IPv6   30862      0t0  TCP *:https (LISTEN)
+nginx         566        www-data    6u  IPv4   30859      0t0  TCP *:http (LISTEN)
+nginx         566        www-data    7u  IPv6   30860      0t0  TCP *:http (LISTEN)
+nginx         566        www-data    8u  IPv4   30861      0t0  TCP *:https (LISTEN)
+nginx         566        www-data    9u  IPv6   30862      0t0  TCP *:https (LISTEN)
+nginx         567        www-data    6u  IPv4   30859      0t0  TCP *:http (LISTEN)
+nginx         567        www-data    7u  IPv6   30860      0t0  TCP *:http (LISTEN)
+nginx         567        www-data    8u  IPv4   30861      0t0  TCP *:https (LISTEN)
+nginx         567        www-data    9u  IPv6   30862      0t0  TCP *:https (LISTEN)
+scoringbo     586            root    3u  IPv4 3378279      0t0  TCP www.beg.11.berylia.org:51010->scoring-c2.berylia.org:https (ESTABLISHED)
+docker-pr     785            root    4u  IPv4   31608      0t0  TCP *:http-alt (LISTEN)
+sshd      1945909            root    4u  IPv4 3377393      0t0  TCP www.beg.11.berylia.org:ssh->10.11.60.52:59347 (ESTABLISHED)
+sshd      1945909            root    9u  IPv6 3378758      0t0  TCP localhost:6010 (LISTEN)
+sshd      1945909            root   10u  IPv4 3378759      0t0  TCP localhost:6010 (LISTEN)
+sshd      1946266            root    4u  IPv4 3377862      0t0  TCP www.beg.11.berylia.org:ssh->10.11.60.52:59593 (ESTABLISHED)
+sshd      1947786            root    4u  IPv4 3381163      0t0  TCP www.beg.11.berylia.org:ssh->10.11.60.52:59786 (ESTABLISHED)
+----------------------------------------------------------------------
+

@@ -1,0 +1,170 @@
+======================================================================
+ 2. Running Process List
+======================================================================
+# ps auwxf
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Apr08   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [rcu_par_gp]
+root           6  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kworker/0:0H-kblockd]
+root           9  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [mm_percpu_wq]
+root          10  0.0  0.0      0     0 ?        S    Apr08   0:03  \_ [ksoftirqd/0]
+root          11  0.0  0.0      0     0 ?        I    Apr08   1:42  \_ [rcu_sched]
+root          12  0.0  0.0      0     0 ?        S    Apr08   0:02  \_ [migration/0]
+root          13  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [idle_inject/0]
+root          14  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [cpuhp/0]
+root          15  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [cpuhp/1]
+root          16  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [idle_inject/1]
+root          17  0.0  0.0      0     0 ?        S    Apr08   0:01  \_ [migration/1]
+root          18  0.0  0.0      0     0 ?        S    Apr08   0:03  \_ [ksoftirqd/1]
+root          20  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kworker/1:0H-kblockd]
+root          21  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [kdevtmpfs]
+root          22  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [netns]
+root          23  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [rcu_tasks_kthre]
+root          24  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [kauditd]
+root          28  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [khungtaskd]
+root          29  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [oom_reaper]
+root          30  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [writeback]
+root          31  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [kcompactd0]
+root          32  0.0  0.0      0     0 ?        SN   Apr08   0:00  \_ [ksmd]
+root          33  0.0  0.0      0     0 ?        SN   Apr08   0:00  \_ [khugepaged]
+root         125  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kintegrityd]
+root         126  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kblockd]
+root         127  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [blkcg_punt_bio]
+root         128  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [tpm_dev_wq]
+root         129  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [ata_sff]
+root         130  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [md]
+root         131  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [edac-poller]
+root         132  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [devfreq_wq]
+root         133  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [watchdogd]
+root         136  0.0  0.0      0     0 ?        S    Apr08   0:02  \_ [kswapd0]
+root         137  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [ecryptfs-kthrea]
+root         140  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kthrotld]
+root         141  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/24-pciehp]
+root         142  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/25-pciehp]
+root         143  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/26-pciehp]
+root         144  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/27-pciehp]
+root         145  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/28-pciehp]
+root         146  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/29-pciehp]
+root         147  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/30-pciehp]
+root         148  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/31-pciehp]
+root         149  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/32-pciehp]
+root         150  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/33-pciehp]
+root         151  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/34-pciehp]
+root         152  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/35-pciehp]
+root         153  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/36-pciehp]
+root         154  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/37-pciehp]
+root         155  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/38-pciehp]
+root         156  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/39-pciehp]
+root         157  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/40-pciehp]
+root         158  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/41-pciehp]
+root         159  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/42-pciehp]
+root         160  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/43-pciehp]
+root         161  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/44-pciehp]
+root         162  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/45-pciehp]
+root         163  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/46-pciehp]
+root         164  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/47-pciehp]
+root         165  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/48-pciehp]
+root         166  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/49-pciehp]
+root         167  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/50-pciehp]
+root         168  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/51-pciehp]
+root         169  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/52-pciehp]
+root         170  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/53-pciehp]
+root         171  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/54-pciehp]
+root         172  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [irq/55-pciehp]
+root         173  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [acpi_thermal_pm]
+root         174  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [scsi_eh_0]
+root         175  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [scsi_tmf_0]
+root         176  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [scsi_eh_1]
+root         177  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [scsi_tmf_1]
+root         179  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [vfio-irqfd-clea]
+root         181  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [ipv6_addrconf]
+root         192  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kstrp]
+root         196  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [kworker/u257:0]
+root         212  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [charger_manager]
+root         213  0.0  0.0      0     0 ?        I<   Apr08   0:07  \_ [kworker/0:1H-kblockd]
+root         253  0.0  0.0      0     0 ?        S    Apr08   0:00  \_ [scsi_eh_2]
+root         255  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [scsi_tmf_2]
+root         256  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [vmw_pvscsi_wq_2]
+root         257  0.0  0.0      0     0 ?        I<   Apr08   0:07  \_ [kworker/1:1H-kblockd]
+root         278  0.0  0.0      0     0 ?        S    Apr08   0:13  \_ [jbd2/sda5-8]
+root         279  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [ext4-rsv-conver]
+root         366  0.0  0.0      0     0 ?        S    Apr08   0:25  \_ [irq/16-vmwgfx]
+root         367  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [ttm_swap]
+root         377  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [cryptd]
+root         503  0.0  0.0      0     0 ?        I<   Apr08   0:00  \_ [nfit]
+root         604  0.0  0.0   2488   576 ?        S    Apr08   0:00  \_ bpfilter_umh
+root     1784996  0.0  0.0      0     0 ?        I    Apr12   0:04  \_ [kworker/u256:1-events_unbound]
+root     1918316  0.0  0.0      0     0 ?        I    04:47   0:00  \_ [kworker/u256:3-events_unbound]
+root     1943574  0.0  0.0      0     0 ?        I    06:13   0:00  \_ [kworker/1:2-rcu_par_gp]
+root     1943575  0.0  0.0      0     0 ?        I    06:13   0:00  \_ [kworker/0:1-events]
+root     1945044  0.0  0.0      0     0 ?        I    06:18   0:00  \_ [kworker/u256:0-events_power_efficient]
+root     1945612  0.0  0.0      0     0 ?        I    06:20   0:00  \_ [kworker/1:0-events]
+root     1945613  0.0  0.0      0     0 ?        I    06:20   0:00  \_ [kworker/0:0-rcu_par_gp]
+root     1947492  0.0  0.0      0     0 ?        I    06:26   0:00  \_ [kworker/1:1-events]
+root           1  0.0  0.4 167120  9072 ?        Ss   Apr08   2:10 /sbin/init splash
+root         312  0.0  2.6 170324 53332 ?        S<s  Apr08   0:14 /lib/systemd/systemd-journald
+root         337  0.0  0.2  21092  4136 ?        Ss   Apr08   0:01 /lib/systemd/systemd-udevd
+root     1948528  0.0  0.1  21092  2616 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948529  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948530  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948531  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948532  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948533  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948534  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948535  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948536  0.0  0.1  21092  2484 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948537  0.0  0.1  21092  2800 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+root     1948538  0.0  0.1  21092  2800 ?        S    06:29   0:00  \_ /lib/systemd/systemd-udevd
+systemd+     347  0.0  0.2  18664  5416 ?        Ss   Apr08   0:03 /lib/systemd/systemd-networkd
+systemd+     419  0.0  0.4  24044  8336 ?        Ss   Apr08   0:08 /lib/systemd/systemd-resolved
+systemd+     421  0.0  0.2  90380  4820 ?        Ssl  Apr08   0:00 /lib/systemd/systemd-timesyncd
+root         448  0.0  0.2  50436  5652 ?        Ss   Apr08   0:00 /usr/bin/VGAuthService
+root         449  0.0  0.2 239176  4656 ?        Ssl  Apr08   4:51 /usr/bin/vmtoolsd
+root         523  0.0  0.2 238476  4852 ?        Ssl  Apr08   0:07 /usr/lib/accountsservice/accounts-daemon
+root         524  0.0  0.0   2540   772 ?        Ss   Apr08   0:00 /usr/sbin/acpid
+root         525  0.0  0.1   9724  2980 ?        Ss   Apr08   0:00 /usr/sbin/cron -f
+message+     526  0.0  0.1   7380  3664 ?        Ss   Apr08   0:19 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root         531  0.0  0.1  81940  3276 ?        Ssl  Apr08   0:13 /usr/sbin/irqbalance --foreground
+root         533  0.0  0.5  31916 11476 ?        Ss   Apr08   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+syslog       534  0.0  0.2 224320  4904 ?        Ssl  Apr08   0:02 /usr/sbin/rsyslogd -n -iNONE
+root         535  0.0  0.3  16992  6812 ?        Ss   Apr08   0:07 /lib/systemd/systemd-logind
+root         560  0.0  0.7 1343880 15380 ?       Ssl  Apr08   4:02 /usr/bin/containerd
+root         562  0.0  0.0   8740  1680 tty1     Ss+  Apr08   0:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+root         563  0.0  0.2  12156  5360 ?        Ss   Apr08   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root     1945909  0.0  0.4  13864  8164 ?        Ss   06:21   0:00  \_ sshd: root@pts/0
+root     1946295  0.0  0.2  11204  5192 pts/0    Ss   06:22   0:00  |   \_ -bash
+root     1948168  0.0  0.1   9936  3600 pts/0    T    06:28   0:00  |       \_ /bin/bash ./syscheck_hash.sh
+root     1948175  0.4  0.1  11224  3404 pts/0    T    06:28   0:00  |       |   \_ find / -type f -exec timeout 1s md5sum {} +
+root     1948477  0.0  0.0      0     0 pts/0    Z    06:29   0:00  |       |       \_ [timeout] <defunct>
+root     1948481  0.2  0.2  11464  5212 pts/0    S+   06:29   0:00  |       \_ /bin/bash ./syscheck_linux.sh
+root     1948606  0.0  0.1  11936  3412 pts/0    R+   06:29   0:00  |           \_ ps auwxf
+root     1946266  0.0  0.3  13864  7980 ?        Ss   06:22   0:00  \_ sshd: root@notty
+root     1946293  0.0  0.1   5884  3744 ?        Ss   06:22   0:00  |   \_ /usr/lib/openssh/sftp-server
+root     1947786  0.0  0.4  13860  8072 ?        Ss   06:27   0:00  \_ sshd: root@notty
+root     1947820  0.0  0.1   9884  3464 ?        Ss   06:27   0:00      \_ -bash
+root         565  0.0  0.0  55268  1404 ?        Ss   Apr08   0:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+www-data     566  0.0  0.2  55964  5092 ?        S    Apr08   1:10  \_ nginx: worker process
+www-data     567  0.0  0.1  55832  3800 ?        S    Apr08   0:00  \_ nginx: worker process
+root         585  0.0  1.8 1824388 37784 ?       Ssl  Apr08   2:52 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root         785  0.0  0.2 1298356 4108 ?        Sl   Apr08   0:39  \_ /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8080 -container-ip 172.18.0.3 -container-port 80
+root         586  0.0  0.9 714964 18516 ?        Ssl  Apr08   1:05 /home/scoringbot/scoringbot/scoringbot
+root         802  0.0  0.1 711024  2180 ?        Sl   Apr08   0:20 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 55aff7006cdc6ce185aeb593d4d34bfbf354fda774ba3a56077f70484cd3a308 -address /run/containerd/containerd.sock
+root         853  0.0  0.0   2608     0 ?        Ss   Apr08   0:00  \_ /bin/sh -c /bin/bash ./entrypoint.sh
+root         964  0.0  0.0   3976   352 ?        S    Apr08   0:00      \_ /bin/bash ./entrypoint.sh
+root         977  0.0  0.1  61620  2600 ?        Sl   Apr08   0:01          \_ /opt/mssql/bin/sqlservr
+root        1017  0.8 34.0 6325436 683944 ?      Sl   Apr08  58:12              \_ /opt/mssql/bin/sqlservr
+root         829  0.0  0.1 711024  2756 ?        Sl   Apr08   0:18 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 8fd0c22ae7b298cde7405fc12642e746db0fb7c320d719f5cc3aa3f01f1f3271 -address /run/containerd/containerd.sock
+root         854  0.0  0.0   2412     0 ?        Ss   Apr08   0:00  \_ /bin/sh -c /bin/sh entrypoint.sh
+root         942  0.0  0.0   2412     0 ?        S    Apr08   0:00      \_ /bin/sh entrypoint.sh
+root         946  0.1 15.8 3144684 318108 ?      Sl   Apr08  10:50      |   \_ /usr/local/openjdk-11/bin/java -Djava.security.egd=file:/dev/./urandom -Dspring.datasource.url=jdbc:sqlserver://www-beg-db;databaseName=portal -Dspring.datasource.username=admin -Dspring.datasource.password=Admin1Admin1 -Dportal.crx.team.name=BT11 -Dportal.crx.invoices.folder=/invoices/ -jar nrjselfservice.jar
+root         947  0.0  0.0   5568  1400 ?        Ss   Apr08   0:02      \_ cron
+root     1946903  0.0  0.0   8040  1832 ?        S    06:25   0:00          \_ CRON
+root     1946905  0.0  0.0   2412    68 ?        Ss   06:25   0:00              \_ /bin/sh -c test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+root     1946907  0.0  0.0   2304    84 ?        S    06:25   0:00                  \_ run-parts --report /etc/cron.daily
+root     1946909  0.0  0.0   2412    68 ?        S    06:25   0:00                      \_ /bin/sh /etc/cron.daily/apt-compat
+root     1946921  0.0  0.0   2324    88 ?        S    06:25   0:00                          \_ sleep 372
+root     1946231  0.0  0.4  18524  8840 ?        Ss   06:22   0:00 /lib/systemd/systemd --user
+root     1946237  0.0  0.1 168460  2852 ?        S    06:22   0:00  \_ (sd-pam)
+----------------------------------------------------------------------
+

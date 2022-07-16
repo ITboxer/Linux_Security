@@ -1,0 +1,53 @@
+======================================================================
+ 4.1. Disk Use 
+======================================================================
+Check> Disk Use
+----------------------------------------------------------------------
+# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            953M     0  953M   0% /dev
+tmpfs           196M  992K  196M   1% /run
+/dev/sda5        24G  6.3G   17G  28% /
+tmpfs           980M     0  980M   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           980M     0  980M   0% /sys/fs/cgroup
+/dev/sda1       511M  4.0K  511M   1% /boot/efi
+overlay          24G  6.3G   17G  28% /var/lib/docker/overlay2/c4d319f3758970307c6d7ae24f7a5f20b0b7d6554bc35b0f0c3877ae2bb3c579/merged
+overlay          24G  6.3G   17G  28% /var/lib/docker/overlay2/9e052722e57b1e2170620b83b9fea2ecadac38017001cfdc3f22844b106dc079/merged
+tmpfs           196M     0  196M   0% /run/user/0
+----------------------------------------------------------------------
+
+======================================================================
+ 4.2. Physical Disk Use 
+======================================================================
+Check> Physical Disk Use
+----------------------------------------------------------------------
+# fdisk -l 
+Disk /dev/sda: 25 GiB, 26843545600 bytes, 52428800 sectors
+Disk model: Virtual disk    
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x4b34c220
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *       2048  1050623  1048576  512M  b W95 FAT32
+/dev/sda2       1052670 52426751 51374082 24.5G  5 Extended
+/dev/sda5       1052672 52426751 51374080 24.5G 83 Linux
+----------------------------------------------------------------------
+
+======================================================================
+ 4.3. Partition Use 
+======================================================================
+Check> Partition Use
+----------------------------------------------------------------------
+# lsblk 
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   25G  0 disk 
+├─sda1   8:1    0  512M  0 part /boot/efi
+├─sda2   8:2    0    1K  0 part 
+└─sda5   8:5    0 24.5G  0 part /
+sr0     11:0    1 1024M  0 rom  
+----------------------------------------------------------------------
+
